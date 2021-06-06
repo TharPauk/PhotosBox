@@ -23,7 +23,6 @@ class PhotosViewController: UIViewController {
         super.viewDidLoad()
         setupCollectionView()
         requestPermission()
-        loadPhotos()
     }
     
     private func setupCollectionView() {
@@ -35,15 +34,19 @@ class PhotosViewController: UIViewController {
     
     private func requestPermission() {
         guard PHPhotoLibrary.authorizationStatus() != .authorized
-        else { return }
+        else {
+            loadPhotos()
+            return
+        }
         
         PHPhotoLibrary.requestAuthorization { (status) in
             if status == .authorized {
                 self.collectionView.reloadData()
-            } else {
-                self.goToSettingsAlert()
             }
+                
+            
         }
+        self.goToSettingsAlert()
         
     }
     
