@@ -15,6 +15,7 @@
 		D918274A266BB9A0006281BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9182748266BB9A0006281BE /* LaunchScreen.storyboard */; };
 		D9253183266BC93D0006E61F /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9253182266BC93D0006E61F /* PhotosViewController.swift */; };
 		D960D8F1266BCB590007B2C5 /* CloudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960D8F0266BCB590007B2C5 /* CloudViewController.swift */; };
+		D9633EAD266CC26E00A7BCBF /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9633EAC266CC26E00A7BCBF /* PhotoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		D918274B266BB9A0006281BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9253182266BC93D0006E61F /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		D960D8F0266BCB590007B2C5 /* CloudViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudViewController.swift; sourceTree = "<group>"; };
+		D9633EAC266CC26E00A7BCBF /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		D918273C266BB99F006281BE /* PhotosBox */ = {
 			isa = PBXGroup;
 			children = (
+				D9633EAA266CC23A00A7BCBF /* Views */,
 				D918273D266BB99F006281BE /* AppDelegate.swift */,
 				D918273F266BB99F006281BE /* SceneDelegate.swift */,
 				D9253181266BC92B0006E61F /* Controllers */,
@@ -79,6 +82,22 @@
 				D960D8F0266BCB590007B2C5 /* CloudViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D9633EAA266CC23A00A7BCBF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D9633EAB266CC24000A7BCBF /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D9633EAB266CC24000A7BCBF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D9633EAC266CC26E00A7BCBF /* PhotoCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +174,7 @@
 				D918273E266BB99F006281BE /* AppDelegate.swift in Sources */,
 				D960D8F1266BCB590007B2C5 /* CloudViewController.swift in Sources */,
 				D9253183266BC93D0006E61F /* PhotosViewController.swift in Sources */,
+				D9633EAD266CC26E00A7BCBF /* PhotoCell.swift in Sources */,
 				D9182740266BB99F006281BE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
