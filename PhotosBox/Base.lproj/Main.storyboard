@@ -12,7 +12,6 @@
         <!--Item-->
         <scene sceneID="PnX-TY-yVu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ebw-57-Zi7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="g93-Gn-cEv" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="bK1-hF-BOM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="okY-Xr-LKH">
@@ -23,6 +22,7 @@
                         <segue destination="KHT-cG-yjz" kind="relationship" relationship="rootViewController" id="xtE-qc-R1P"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ebw-57-Zi7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="564" y="400"/>
         </scene>
@@ -118,14 +118,18 @@
                     <tabBarItem key="tabBarItem" title="Photos" image="unselected_photo_icon" selectedImage="selected_photo_icon" id="Uy8-Ew-9Jt"/>
                     <navigationItem key="navigationItem" title="Photos" id="XFI-MS-lxf">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="5Nf-cy-CLc">
+                            <barButtonItem style="done" systemItem="add" id="5Nf-cy-CLc">
                                 <connections>
                                     <segue destination="Fwg-O8-2S1" kind="popoverPresentation" popoverAnchorBarButtonItem="5Nf-cy-CLc" id="tqZ-Ib-J0V">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="edit" id="JmD-Xv-OTD"/>
+                            <barButtonItem title="Select" style="done" id="JmD-Xv-OTD">
+                                <connections>
+                                    <action selector="selectButtonPressed:" destination="VhQ-DS-agb" id="o5x-z2-Mju"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -136,6 +140,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eh4-wv-Jmo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1393" y="-267"/>
+        </scene>
+        <!--Photo Detail Controller-->
+        <scene sceneID="SW9-vV-ryH">
+            <objects>
+                <viewController storyboardIdentifier="PhotoDetailController" id="vXy-qp-hzU" customClass="PhotoDetailController" customModule="PhotosBox" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RVB-UN-WCE">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oaS-Nn-ixe">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cxi-ge-Y2P"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="oaS-Nn-ixe" firstAttribute="top" secondItem="RVB-UN-WCE" secondAttribute="top" id="QzH-i3-Im4"/>
+                            <constraint firstItem="oaS-Nn-ixe" firstAttribute="leading" secondItem="cxi-ge-Y2P" secondAttribute="leading" id="UZU-rL-TQ1"/>
+                            <constraint firstAttribute="bottom" secondItem="oaS-Nn-ixe" secondAttribute="bottom" id="c4v-cg-61Z"/>
+                            <constraint firstItem="oaS-Nn-ixe" firstAttribute="trailing" secondItem="cxi-ge-Y2P" secondAttribute="trailing" id="zOR-Ci-Qf2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="oaS-Nn-ixe" id="VQy-2L-dJC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9ke-59-1Hq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2603.0769230769229" y="-614.21800947867291"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Uh5-c0-eQl">
@@ -172,12 +205,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XGy-kF-Qe3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2569" y="-267"/>
+            <point key="canvasLocation" x="2632" y="105"/>
         </scene>
         <!--Select Photos-->
         <scene sceneID="HiS-3L-uqj">
             <objects>
-                <viewController id="a8y-5q-cTL" customClass="PhotosViewController" customModule="PhotosBox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="a8y-5q-cTL" customClass="PhotosSelectionController" customModule="PhotosBox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uNo-ad-7se">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -212,8 +245,8 @@
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="a8y-5q-cTL" id="MSY-4v-sks"/>
-                                    <outlet property="delegate" destination="a8y-5q-cTL" id="gVB-w3-Bl8"/>
+                                    <outlet property="dataSource" destination="a8y-5q-cTL" id="AYt-z2-X3c"/>
+                                    <outlet property="delegate" destination="a8y-5q-cTL" id="7uq-Bt-tw0"/>
                                 </connections>
                             </collectionView>
                         </subviews>
@@ -228,16 +261,20 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Photos" image="unselected_photo_icon" selectedImage="selected_photo_icon" id="Kdp-KB-bJf"/>
                     <navigationItem key="navigationItem" title="Select Photos" id="rJT-7o-Ld5">
-                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="sfP-1e-tir"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="sfP-1e-tir">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="a8y-5q-cTL" id="XTU-ED-z6h"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="collectionView" destination="3J3-Ca-4bs" id="cEQ-Bv-wkS"/>
-                        <outlet property="flowLayout" destination="3Ma-8N-1bF" id="cGd-EU-mjO"/>
+                        <outlet property="collectionView" destination="3J3-Ca-4bs" id="vyP-Tl-1Wp"/>
+                        <outlet property="flowLayout" destination="3Ma-8N-1bF" id="aBL-Ln-Nxx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zex-Sq-ZQy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3403" y="-267"/>
+            <point key="canvasLocation" x="3466" y="105"/>
         </scene>
     </scenes>
     <resources>

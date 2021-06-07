@@ -8,85 +8,50 @@
 import UIKit
 import Photos
 
-class PhotosViewController: UIViewController {
+class PhotosViewController: GridCollectionView {
     
-    private var photos = PHFetchResult<PHAsset>()
-    private var cellWidth: CGFloat {
-        (view.frame.width - 10) / 3
-    }
+    private var photos = [UIImage]()
+    private var isSelecting = false
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
-        requestPermission()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    @IBAction func selectButtonPressed(_ sender: UIBarButtonItem) {
+        isSelecting = !isSelecting
+        collectionView.allowsSelection = isSelecting
+        collectionView.allowsMultipleSelection = isSelecting
+        sender.title = isSelecting ? "Done" : "Select"
     }
     
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        
         flowLayout.minimumLineSpacing = 4.0
         flowLayout.minimumInteritemSpacing = 2.0
     }
     
-    private func requestPermission() {
-        guard PHPhotoLibrary.authorizationStatus() != .authorized
-        else {
-            loadPhotos()
-            return
-        }
-        
-        PHPhotoLibrary.requestAuthorization { (status) in
-            if status == .authorized {
-                self.collectionView.reloadData()
-            }
-                
-            
-        }
-        self.goToSettingsAlert()
-        
-    }
-    
-    private func loadPhotos() {
-        let options = PHFetchOptions()
-        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        photos = PHAsset.fetchAssets(with: options)
-        collectionView.reloadData()
-    }
-    
-    private func goToSettingsAlert() {
-        let alertVC = UIAlertController(title: "Photo Permission is not granted.", message: "Allow Photos Access in the Settings to select photos.", preferredStyle: .alert)
-        let goToSettingsAction = UIAlertAction(title: "Settings", style: .default) { _ in
-            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
-            UIApplication.shared.open(url)
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        
-        [goToSettingsAction, cancelAction].forEach { alertVC.addAction($0) }
-        alertVC.preferredAction = goToSettingsAction
-        present(alertVC, animated: true)
-    }
-}
-
-
-extension PhotosViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: cellWidth, height: cellWidth)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
-    }
 }
 
 
 extension PhotosViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier, for: indexPath) as! PhotoCell
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let photoDetailController = storyboard.instantiateViewController(identifier: "PhotoDetailController") as! PhotoDetailController
+        print("item = \(indexPath.item)")
         
+//        navigationController?.pushViewController(photoDetailController, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -95,9 +60,8 @@ extension PhotosViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier, for: indexPath) as! PhotoCell
-        let asset = photos[indexPath.item]
-        cell.loadImage(asset: asset, targetSize: CGSize(width: cellWidth, height: cellWidth))
-        
+        let photo = photos[indexPath.item]
+        cell.imageView.image = photo
         return cell
     }
     
