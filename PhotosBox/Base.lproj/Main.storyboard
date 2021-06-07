@@ -120,9 +120,7 @@
                         <rightBarButtonItems>
                             <barButtonItem style="done" systemItem="add" id="5Nf-cy-CLc">
                                 <connections>
-                                    <segue destination="Fwg-O8-2S1" kind="popoverPresentation" popoverAnchorBarButtonItem="5Nf-cy-CLc" id="tqZ-Ib-J0V">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
+                                    <segue destination="Fwg-O8-2S1" kind="show" id="tqZ-Ib-J0V"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Select" style="done" id="JmD-Xv-OTD">
@@ -194,9 +192,10 @@
         <!--Navigation Controller-->
         <scene sceneID="2HK-B2-rLc">
             <objects>
-                <navigationController id="Fwg-O8-2S1" sceneMemberID="viewController">
+                <navigationController modalPresentationStyle="fullScreen" id="Fwg-O8-2S1" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="xI9-Cu-jCn"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1Px-9r-FK4">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -210,13 +209,13 @@
         <!--Select Photos-->
         <scene sceneID="HiS-3L-uqj">
             <objects>
-                <viewController id="a8y-5q-cTL" customClass="PhotosSelectionController" customModule="PhotosBox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="a8y-5q-cTL" customClass="PhotosSelectionController" customModule="PhotosBox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uNo-ad-7se">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3J3-Ca-4bs">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3Ma-8N-1bF">
                                     <size key="itemSize" width="128" height="128"/>

@@ -19,6 +19,7 @@
 		D989860D266E6E4E002578F6 /* PhotoDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D989860C266E6E4E002578F6 /* PhotoDetailController.swift */; };
 		D9898615266E78AB002578F6 /* PhotosSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9898614266E78AB002578F6 /* PhotosSelectionController.swift */; };
 		D989861A266E7AC1002578F6 /* GridCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9898619266E7AC1002578F6 /* GridCollectionView.swift */; };
+		D989861E266E8443002578F6 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D989861D266E8443002578F6 /* DataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		D989860C266E6E4E002578F6 /* PhotoDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailController.swift; sourceTree = "<group>"; };
 		D9898614266E78AB002578F6 /* PhotosSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosSelectionController.swift; sourceTree = "<group>"; };
 		D9898619266E7AC1002578F6 /* GridCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCollectionView.swift; sourceTree = "<group>"; };
+		D989861D266E8443002578F6 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		D918273C266BB99F006281BE /* PhotosBox */ = {
 			isa = PBXGroup;
 			children = (
+				D989861C266E8437002578F6 /* Models */,
 				D9633EAA266CC23A00A7BCBF /* Views */,
 				D918273D266BB99F006281BE /* AppDelegate.swift */,
 				D918273F266BB99F006281BE /* SceneDelegate.swift */,
@@ -115,6 +118,14 @@
 				D9898619266E7AC1002578F6 /* GridCollectionView.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D989861C266E8437002578F6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D989861D266E8443002578F6 /* DataModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +203,7 @@
 				D918273E266BB99F006281BE /* AppDelegate.swift in Sources */,
 				D960D8F1266BCB590007B2C5 /* CloudViewController.swift in Sources */,
 				D9253183266BC93D0006E61F /* PhotosViewController.swift in Sources */,
+				D989861E266E8443002578F6 /* DataModel.swift in Sources */,
 				D9633EAD266CC26E00A7BCBF /* PhotoCell.swift in Sources */,
 				D9182740266BB99F006281BE /* SceneDelegate.swift in Sources */,
 				D989860D266E6E4E002578F6 /* PhotoDetailController.swift in Sources */,

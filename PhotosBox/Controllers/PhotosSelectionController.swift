@@ -52,7 +52,6 @@ class PhotosSelectionController: GridCollectionView {
             }
         }
         self.goToSettingsAlert()
-        
     }
     
     private func loadPhotos() {
@@ -64,8 +63,8 @@ class PhotosSelectionController: GridCollectionView {
     }
     
     private func goToSettingsAlert() {
-        let alertVC = UIAlertController(title: "Photo Permission is not granted.", message: "Allow Photos Access in the Settings to select photos.", preferredStyle: .alert)
-        let goToSettingsAction = UIAlertAction(title: "Settings", style: .default) { _ in
+        let alertVC = UIAlertController(title: "Please Allow Access to Your Photos", message: "This allows Photos Box to store photos locally or upload to cloud storage.", preferredStyle: .alert)
+        let goToSettingsAction = UIAlertAction(title: "Go to Settings", style: .default) { _ in
             guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
             UIApplication.shared.open(url)
         }
@@ -78,6 +77,8 @@ class PhotosSelectionController: GridCollectionView {
     
     
     @IBAction func doneButtonPressed(_ sender: Any) {
+        let selectedIndexPaths = collectionView.indexPathsForSelectedItems
+//        DataModel.selectedAssets = selectedIndexPaths?.compactMap{ assets[$0.item] } ?? []
         self.dismiss(animated: true)
     }
     
