@@ -12,11 +12,16 @@ class PhotosSelectionController: GridCollectionView {
     
     private var assets = PHFetchResult<PHAsset>()
     private var isSelecting = false
-  
+    private var selectedIndexPaths = [IndexPath]() {
+        didSet {
+            addButton.isEnabled = selectedIndexPaths.count > 0
+        }
+    }
+    var dataController: DataController!
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    
+    @IBOutlet weak var addButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +39,8 @@ class PhotosSelectionController: GridCollectionView {
         collectionView.dataSource = self
         collectionView.allowsSelection = true
         collectionView.allowsMultipleSelection = true
+        
+        addButton.isEnabled = false
         
         flowLayout.minimumLineSpacing = 4.0
         flowLayout.minimumInteritemSpacing = 2.0
@@ -76,17 +83,42 @@ class PhotosSelectionController: GridCollectionView {
     }
     
     
+    private func requestPhoto(at indexPath: IndexPath) {
+        
+        let asset = assets[indexPath.item]
+        let size = CGSize(width: cellWidth, height: cellWidth)
+        let resultHandler: (UIImage?, [AnyHashable: Any]?) -> Void = { image, _ in
+            if let image = image {
+                let photo = Photo(context: self.dataController.viewContext)
+                photo.data = image.pngData()
+                self.dataController.saveContext()
+            }
+        }
+        
+        let options = PHImageRequestOptions()
+        options.isSynchronous = true
+        
+        PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: options,resultHandler: resultHandler)
+        
+    }
+    
     @IBAction func doneButtonPressed(_ sender: Any) {
-        let selectedIndexPaths = collectionView.indexPathsForSelectedItems
-//        DataModel.selectedAssets = selectedIndexPaths?.compactMap{ assets[$0.item] } ?? []
+        selectedIndexPaths.forEach { requestPhoto(at: $0) }
         self.dismiss(animated: true)
     }
     
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
 }
 
 
 extension PhotosSelectionController: UICollectionViewDataSource {
-    
+  
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndexPaths = self.collectionView.indexPathsForSelectedItems ?? []
+        navigationItem.title = "\(selectedIndexPaths.count) photos selected"
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         assets.count

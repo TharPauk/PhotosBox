@@ -14,6 +14,9 @@
 		D9182747266BB9A0006281BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9182746266BB9A0006281BE /* Assets.xcassets */; };
 		D918274A266BB9A0006281BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9182748266BB9A0006281BE /* LaunchScreen.storyboard */; };
 		D9253183266BC93D0006E61F /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9253182266BC93D0006E61F /* PhotosViewController.swift */; };
+		D94D508E266FB8230056D089 /* PhotosBox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D94D508C266FB8230056D089 /* PhotosBox.xcdatamodeld */; };
+		D94D5091266FB8E60056D089 /* Photo+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94D5090266FB8E60056D089 /* Photo+Extensions.swift */; };
+		D94D5094266FB9260056D089 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94D5093266FB9260056D089 /* DataController.swift */; };
 		D960D8F1266BCB590007B2C5 /* CloudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D960D8F0266BCB590007B2C5 /* CloudViewController.swift */; };
 		D9633EAD266CC26E00A7BCBF /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9633EAC266CC26E00A7BCBF /* PhotoCell.swift */; };
 		D989860D266E6E4E002578F6 /* PhotoDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D989860C266E6E4E002578F6 /* PhotoDetailController.swift */; };
@@ -32,6 +35,9 @@
 		D9182749266BB9A0006281BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D918274B266BB9A0006281BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9253182266BC93D0006E61F /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		D94D508D266FB8230056D089 /* PhotosBox.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PhotosBox.xcdatamodel; sourceTree = "<group>"; };
+		D94D5090266FB8E60056D089 /* Photo+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+Extensions.swift"; sourceTree = "<group>"; };
+		D94D5093266FB9260056D089 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		D960D8F0266BCB590007B2C5 /* CloudViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudViewController.swift; sourceTree = "<group>"; };
 		D9633EAC266CC26E00A7BCBF /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		D989860C266E6E4E002578F6 /* PhotoDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailController.swift; sourceTree = "<group>"; };
@@ -91,6 +97,7 @@
 				D960D8F0266BCB590007B2C5 /* CloudViewController.swift */,
 				D989860C266E6E4E002578F6 /* PhotoDetailController.swift */,
 				D9898614266E78AB002578F6 /* PhotosSelectionController.swift */,
+				D94D5093266FB9260056D089 /* DataController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -124,6 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				D989861D266E8443002578F6 /* DataModel.swift */,
+				D94D508C266FB8230056D089 /* PhotosBox.xcdatamodeld */,
+				D94D5090266FB8E60056D089 /* Photo+Extensions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -201,12 +210,15 @@
 				D9182742266BB99F006281BE /* HomeViewController.swift in Sources */,
 				D9898615266E78AB002578F6 /* PhotosSelectionController.swift in Sources */,
 				D918273E266BB99F006281BE /* AppDelegate.swift in Sources */,
+				D94D508E266FB8230056D089 /* PhotosBox.xcdatamodeld in Sources */,
 				D960D8F1266BCB590007B2C5 /* CloudViewController.swift in Sources */,
 				D9253183266BC93D0006E61F /* PhotosViewController.swift in Sources */,
+				D94D5091266FB8E60056D089 /* Photo+Extensions.swift in Sources */,
 				D989861E266E8443002578F6 /* DataModel.swift in Sources */,
 				D9633EAD266CC26E00A7BCBF /* PhotoCell.swift in Sources */,
 				D9182740266BB99F006281BE /* SceneDelegate.swift in Sources */,
 				D989860D266E6E4E002578F6 /* PhotoDetailController.swift in Sources */,
+				D94D5094266FB9260056D089 /* DataController.swift in Sources */,
 				D989861A266E7AC1002578F6 /* GridCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,6 +421,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D94D508C266FB8230056D089 /* PhotosBox.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D94D508D266FB8230056D089 /* PhotosBox.xcdatamodel */,
+			);
+			currentVersion = D94D508D266FB8230056D089 /* PhotosBox.xcdatamodel */;
+			path = PhotosBox.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D9182732266BB99F006281BE /* Project object */;
 }

@@ -120,7 +120,7 @@
                         <rightBarButtonItems>
                             <barButtonItem style="done" systemItem="add" id="5Nf-cy-CLc">
                                 <connections>
-                                    <segue destination="Fwg-O8-2S1" kind="show" id="tqZ-Ib-J0V"/>
+                                    <segue destination="Fwg-O8-2S1" kind="show" identifier="SelectPhotos" id="tqZ-Ib-J0V"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Select" style="done" id="JmD-Xv-OTD">
@@ -168,10 +168,10 @@
             </objects>
             <point key="canvasLocation" x="2603.0769230769229" y="-614.21800947867291"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Home View Controller-->
         <scene sceneID="Uh5-c0-eQl">
             <objects>
-                <tabBarController id="8m9-0B-qfr" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeViewController" id="8m9-0B-qfr" customClass="HomeViewController" customModule="PhotosBox" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="n5t-1h-W3u">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -260,13 +260,19 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Photos" image="unselected_photo_icon" selectedImage="selected_photo_icon" id="Kdp-KB-bJf"/>
                     <navigationItem key="navigationItem" title="Select Photos" id="rJT-7o-Ld5">
-                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="sfP-1e-tir">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="q1h-e7-05m">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="a8y-5q-cTL" id="2Ia-Vd-Dkj"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Add" style="done" id="sfP-1e-tir">
                             <connections>
                                 <action selector="doneButtonPressed:" destination="a8y-5q-cTL" id="XTU-ED-z6h"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="sfP-1e-tir" id="y9Z-ep-KYA"/>
                         <outlet property="collectionView" destination="3J3-Ca-4bs" id="vyP-Tl-1Wp"/>
                         <outlet property="flowLayout" destination="3Ma-8N-1bF" id="aBL-Ln-Nxx"/>
                     </connections>
