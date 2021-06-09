@@ -50,13 +50,13 @@
         <scene sceneID="IJE-OJ-lI3">
             <objects>
                 <navigationController id="xgu-Kj-epI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="q29-DX-2q2"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="unselected_photo_icon" selectedImage="selected_photo_icon" id="q29-DX-2q2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="ySI-NS-z5a">
                         <rect key="frame" x="0.0" y="44" width="390" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="VhQ-DS-agb" kind="relationship" relationship="rootViewController" id="37K-Nr-ZWe"/>
+                        <segue destination="KJg-za-gQy" kind="relationship" relationship="rootViewController" id="eP3-EN-9XV"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NeC-TJ-oPs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -64,26 +64,81 @@
             <point key="canvasLocation" x="565" y="-266"/>
         </scene>
         <!--Photos-->
-        <scene sceneID="fXw-wl-qXg">
+        <scene sceneID="hNU-Bm-IJ3">
             <objects>
-                <viewController id="VhQ-DS-agb" customClass="PhotosViewController" customModule="PhotosBox" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Photos" image="unselected_photo_icon" selectedImage="selected_photo_icon" id="Uy8-Ew-9Jt"/>
-                    <navigationItem key="navigationItem" title="Photos" id="XFI-MS-lxf">
-                        <rightBarButtonItems>
-                            <barButtonItem style="done" systemItem="add" id="5Nf-cy-CLc">
+                <viewController hidesBottomBarWhenPushed="YES" id="KJg-za-gQy" customClass="PhotosViewController" customModule="PhotosBox" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3rQ-DW-76h">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dTk-0N-BLn">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="761"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="i4t-dN-rZX">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="AAM-qa-Zpf" customClass="PhotoCell" customModule="PhotosBox" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bni-WT-ORu">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hfe-HD-rhW">
+                                                    <rect key="frame" x="-8" y="-8" width="128" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="imageView" destination="Hfe-HD-rhW" id="Xgm-q6-5NJ"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
                                 <connections>
-                                    <segue destination="Fwg-O8-2S1" kind="show" identifier="SelectPhotos" id="tqZ-Ib-J0V"/>
+                                    <outlet property="dataSource" destination="KJg-za-gQy" id="ut9-sH-J64"/>
+                                    <outlet property="delegate" destination="KJg-za-gQy" id="5Vp-W8-k5d"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jB2-Iw-t90"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dTk-0N-BLn" firstAttribute="trailing" secondItem="jB2-Iw-t90" secondAttribute="trailing" id="2Mj-B0-ZcN"/>
+                            <constraint firstItem="dTk-0N-BLn" firstAttribute="leading" secondItem="jB2-Iw-t90" secondAttribute="leading" id="2Sv-WN-9bh"/>
+                            <constraint firstItem="dTk-0N-BLn" firstAttribute="bottom" secondItem="jB2-Iw-t90" secondAttribute="bottom" id="Oxf-KA-neC"/>
+                            <constraint firstItem="dTk-0N-BLn" firstAttribute="top" secondItem="3rQ-DW-76h" secondAttribute="top" id="v0n-07-ZjZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Photos" id="x2z-Lt-Uhz">
+                        <barButtonItem key="leftBarButtonItem" title="Select" id="FlH-wO-ShT">
+                            <connections>
+                                <action selector="selectButtonPressed:" destination="KJg-za-gQy" id="6ES-uN-giw"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="5FL-dy-Wvc">
+                                <connections>
+                                    <segue destination="Fwg-O8-2S1" kind="show" id="09R-wz-4hV"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Select" style="done" id="JmD-Xv-OTD">
-                                <connections>
-                                    <action selector="selectButtonPressed:" destination="VhQ-DS-agb" id="o5x-z2-Mju"/>
-                                </connections>
+                            <barButtonItem systemItem="action" id="2d2-vX-At0">
+                                <color key="tintColor" systemColor="systemBlueColor"/>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addButton" destination="5FL-dy-Wvc" id="H3u-tm-sdH"/>
+                        <outlet property="collectionView" destination="dTk-0N-BLn" id="0dV-ut-cAl"/>
+                        <outlet property="flowLayout" destination="i4t-dN-rZX" id="rSv-me-Vd0"/>
+                        <outlet property="uploadButton" destination="2d2-vX-At0" id="ibn-LE-rBc"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eh4-wv-Jmo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ItA-J9-6sh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1390.7692307692307" y="-267.29857819905214"/>
         </scene>
@@ -108,13 +163,14 @@
                             <constraint firstItem="oaS-Nn-ixe" firstAttribute="trailing" secondItem="cxi-ge-Y2P" secondAttribute="trailing" id="zOR-Ci-Qf2"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="bPQ-EM-apt"/>
                     <connections>
                         <outlet property="photoView" destination="oaS-Nn-ixe" id="NFI-zI-4Uz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ke-59-1Hq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2603.0769230769229" y="-614.21800947867291"/>
+            <point key="canvasLocation" x="2477" y="-735"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="Uh5-c0-eQl">
@@ -152,7 +208,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XGy-kF-Qe3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2632" y="105"/>
+            <point key="canvasLocation" x="2402" y="37"/>
         </scene>
         <!--Select Photos-->
         <scene sceneID="HiS-3L-uqj">
@@ -227,7 +283,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zex-Sq-ZQy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3466" y="105"/>
+            <point key="canvasLocation" x="3235" y="37"/>
         </scene>
     </scenes>
     <resources>

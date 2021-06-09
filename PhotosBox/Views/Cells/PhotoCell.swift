@@ -12,6 +12,7 @@ class PhotoCell: UICollectionViewCell, UIContextMenuInteractionDelegate {
     
     static let identifier = String(describing: PhotoCell.self)
     @IBOutlet weak var imageView: UIImageView!
+    
     override var isSelected: Bool {
         didSet {
             if isSelected {

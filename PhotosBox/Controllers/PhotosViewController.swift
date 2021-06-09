@@ -14,10 +14,12 @@ class PhotosViewController: GridCollectionView {
     private var isSelecting = false
     private var fetchedResultsController: NSFetchedResultsController<Photo>!
     var dataController: DataController!
-    
+   
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-
+    @IBOutlet weak var uploadButton: UIBarButtonItem!
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
@@ -26,6 +28,7 @@ class PhotosViewController: GridCollectionView {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        uploadButton.isEnabled = false
     }
     
     private func setupFetchedResultsController() {
@@ -50,6 +53,8 @@ class PhotosViewController: GridCollectionView {
                 collectionView.deselectItem(at: $0, animated: false)
             }
         }
+        
+        uploadButton.isEnabled = isSelecting
         sender.title = isSelecting ? "Done" : "Select"
     }
     
