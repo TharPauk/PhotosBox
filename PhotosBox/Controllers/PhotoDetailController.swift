@@ -9,10 +9,17 @@ import UIKit
 
 class PhotoDetailController: UIViewController {
 
-    @IBOutlet weak var imageView: UIImageView!
+    
+    @IBOutlet weak var photoView: UIImageView!
+    var image: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        photoView.image = image
     }
     
 

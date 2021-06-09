@@ -11,7 +11,6 @@ import CoreData
 
 class PhotosViewController: GridCollectionView {
     
-    private var photos = [UIImage]()
     private var isSelecting = false
     private var fetchedResultsController: NSFetchedResultsController<Photo>!
     var dataController: DataController!
@@ -46,14 +45,20 @@ class PhotosViewController: GridCollectionView {
     
     @IBAction func selectButtonPressed(_ sender: UIBarButtonItem) {
         isSelecting = !isSelecting
-        collectionView.allowsSelection = isSelecting
-        collectionView.allowsMultipleSelection = isSelecting
+        if !isSelecting {
+            collectionView.indexPathsForSelectedItems?.forEach{
+                collectionView.deselectItem(at: $0, animated: false)
+            }
+        }
         sender.title = isSelecting ? "Done" : "Select"
     }
     
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        collectionView.allowsSelection = true
+        collectionView.allowsMultipleSelection = true
         
         flowLayout.minimumLineSpacing = 4.0
         flowLayout.minimumInteritemSpacing = 2.0
@@ -63,7 +68,6 @@ class PhotosViewController: GridCollectionView {
         guard segue.identifier == "SelectPhotos",
               let navController = segue.destination as? UINavigationController,
               let photosSelectionViewController = navController.viewControllers.first as? PhotosSelectionController else {
-            print("return")
             return
         }
         photosSelectionViewController.dataController = self.dataController
@@ -75,12 +79,17 @@ class PhotosViewController: GridCollectionView {
 extension PhotosViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier, for: indexPath) as! PhotoCell
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let photoDetailController = storyboard.instantiateViewController(identifier: "PhotoDetailController") as! PhotoDetailController
-//        print("item = \(indexPath.item)")
-        
-//        navigationController?.pushViewController(photoDetailController, animated: true)
+        if !isSelecting {
+            collectionView.deselectItem(at: indexPath, animated: false)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let photoDetailController = storyboard.instantiateViewController(identifier: "PhotoDetailController") as! PhotoDetailController
+            if let image = fetchedResultsController.fetchedObjects?[indexPath.item] {
+                photoDetailController.image = UIImage(data: image.data!)
+            }
+           
+            navigationController?.pushViewController(photoDetailController, animated: true)
+        }
+      
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

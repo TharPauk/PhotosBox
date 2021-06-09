@@ -97,8 +97,10 @@ class PhotosSelectionController: GridCollectionView {
         
         let options = PHImageRequestOptions()
         options.isSynchronous = true
+        options.version = .original
+        options.deliveryMode = .highQualityFormat
         
-        PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: options,resultHandler: resultHandler)
+        PHImageManager.default().requestImage(for: asset, targetSize: CGSize(), contentMode: .aspectFill, options: options,resultHandler: resultHandler)
         
     }
     
