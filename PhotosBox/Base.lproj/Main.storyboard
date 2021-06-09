@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="KHT-cG-yjz" kind="relationship" relationship="rootViewController" id="xtE-qc-R1P"/>
+                        <segue destination="KHT-cG-yjz" kind="relationship" relationship="rootViewController" id="mYV-LY-5Ep"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ebw-57-Zi7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -56,7 +56,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="KJg-za-gQy" kind="relationship" relationship="rootViewController" id="eP3-EN-9XV"/>
+                        <segue destination="KJg-za-gQy" kind="relationship" relationship="rootViewController" id="smw-Zk-ybQ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NeC-TJ-oPs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -123,7 +123,7 @@
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="5FL-dy-Wvc">
                                 <connections>
-                                    <segue destination="Fwg-O8-2S1" kind="show" id="09R-wz-4hV"/>
+                                    <segue destination="Fwg-O8-2S1" kind="show" identifier="SelectPhotos" id="09R-wz-4hV"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="action" id="2d2-vX-At0">
