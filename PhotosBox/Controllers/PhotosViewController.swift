@@ -94,6 +94,9 @@ extension PhotosViewController: UICollectionViewDataSource {
            
             navigationController?.pushViewController(photoDetailController, animated: true)
         }
+        
+        let imageName =  isSelecting ? "trash" : "add"
+        addButton.setBackgroundImage(UIImage(systemName: imageName), for: .normal, style: .plain, barMetrics: .default)
       
     }
     
