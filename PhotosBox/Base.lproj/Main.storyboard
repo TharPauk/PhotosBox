@@ -144,7 +144,7 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" red="0.70686030389999999" green="0.74857789279999998" blue="0.78039830919999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="value" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="displayP3"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
@@ -202,13 +202,13 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" red="0.14968813632396938" green="0.14968813632396938" blue="0.14968813632396938" alpha="0.25204313562271446" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="value" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="displayP3"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4sp-g7-boN"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4sp-g7-boN" firstAttribute="trailing" secondItem="vKf-5s-Ppc" secondAttribute="trailing" constant="16" id="0rB-HD-cHb"/>
                             <constraint firstItem="vKf-5s-Ppc" firstAttribute="top" secondItem="XGj-3G-pmw" secondAttribute="bottom" constant="8" id="61b-qJ-mkY"/>
