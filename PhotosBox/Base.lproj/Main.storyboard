@@ -119,10 +119,10 @@
             </objects>
             <point key="canvasLocation" x="1390.7692307692307" y="399.52606635071089"/>
         </scene>
-        <!--View Controller-->
+        <!--Login Controller-->
         <scene sceneID="ETB-P3-Cne">
             <objects>
-                <viewController modalPresentationStyle="formSheet" id="UIL-SQ-Ecu" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="formSheet" id="UIL-SQ-Ecu" customClass="LoginController" customModule="PhotosBox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3E7-Gs-Ddb">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -159,6 +159,9 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="UIL-SQ-Ecu" eventType="touchUpInside" id="Pdg-PR-GdW"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vEa-5Z-eZn">
                                 <rect key="frame" x="0.0" y="115.66666666666667" width="390" height="0.3333333333333286"/>
@@ -278,6 +281,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="AFO-EI-0jx"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="iDm-iM-tzT" id="GmL-a7-dtQ"/>
+                        <outlet property="errorMessageTextView" destination="2Qp-sH-6QW" id="5Zf-hm-qZD"/>
+                        <outlet property="loginButton" destination="bPK-bh-UcO" id="Vhh-FD-xIw"/>
+                        <outlet property="passwordTextField" destination="Zz9-vI-gvo" id="mIx-bB-cIn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ibO-1k-Hb4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -522,10 +531,10 @@
             </objects>
             <point key="canvasLocation" x="3274" y="-267"/>
         </scene>
-        <!--View Controller-->
+        <!--Signup Controller-->
         <scene sceneID="3eP-q7-w9i">
             <objects>
-                <viewController modalPresentationStyle="formSheet" id="Naf-ln-p71" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="formSheet" id="Naf-ln-p71" customClass="SignupController" customModule="PhotosBox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OCw-vq-1Ep">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -562,6 +571,9 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="signupButtonPressed:" destination="Naf-ln-p71" eventType="touchUpInside" id="uJg-8W-LCd"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3fL-eb-AC6">
                                 <rect key="frame" x="0.0" y="115.66666666666667" width="390" height="0.3333333333333286"/>
@@ -681,6 +693,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GdB-Jq-rRW"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="XXk-lr-oae" id="Zp8-jN-FvT"/>
+                        <outlet property="errorMessageTextView" destination="eAK-pi-ZB2" id="jGD-lQ-5kF"/>
+                        <outlet property="passwordTextField" destination="yBm-ew-g5f" id="Ip5-nR-IfO"/>
+                        <outlet property="signupButton" destination="zPC-aj-Vzd" id="HK8-lI-SOf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n5A-PF-uwG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
