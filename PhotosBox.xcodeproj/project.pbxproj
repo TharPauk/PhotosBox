@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,7 @@
 		D9B937F42674B8DD006EE067 /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B937F32674B8DD006EE067 /* SignupController.swift */; };
 		D9B937F72674B8EC006EE067 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B937F62674B8EC006EE067 /* LoginController.swift */; };
 		D9B938052674BBA4006EE067 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B938042674BBA4006EE067 /* ApiService.swift */; };
+		D9B938142674C9C9006EE067 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B938132674C9C9006EE067 /* LoginResponse.swift */; };
 		D9F5B5DF2673B7CA005FE784 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F5B5DE2673B7CA005FE784 /* RoundedButton.swift */; };
 		D9F5B5E22673CB60005FE784 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F5B5E12673CB60005FE784 /* RoundedTextField.swift */; };
 		EAB0E94D832CC92CA8CDDDC4 /* Pods_PhotosBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EF0F254AB3B627B4E4734A4 /* Pods_PhotosBox.framework */; };
@@ -56,6 +57,7 @@
 		D9B937F32674B8DD006EE067 /* SignupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
 		D9B937F62674B8EC006EE067 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		D9B938042674BBA4006EE067 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		D9B938132674C9C9006EE067 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		D9F5B5DE2673B7CA005FE784 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		D9F5B5E12673CB60005FE784 /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,7 +80,6 @@
 				2F210ECC42757443A323E36D /* Pods-PhotosBox.debug.xcconfig */,
 				C0CC3E9834E7A9A8E6B74666 /* Pods-PhotosBox.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -161,6 +162,7 @@
 				D989861D266E8443002578F6 /* DataModel.swift */,
 				D94D508C266FB8230056D089 /* PhotosBox.xcdatamodeld */,
 				D94D5090266FB8E60056D089 /* Photo+Extensions.swift */,
+				D9B938132674C9C9006EE067 /* LoginResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -321,6 +323,7 @@
 				D94D508E266FB8230056D089 /* PhotosBox.xcdatamodeld in Sources */,
 				D960D8F1266BCB590007B2C5 /* CloudViewController.swift in Sources */,
 				D9253183266BC93D0006E61F /* PhotosViewController.swift in Sources */,
+				D9B938142674C9C9006EE067 /* LoginResponse.swift in Sources */,
 				D94D5091266FB8E60056D089 /* Photo+Extensions.swift in Sources */,
 				D989861E266E8443002578F6 /* DataModel.swift in Sources */,
 				D9633EAD266CC26E00A7BCBF /* PhotoCell.swift in Sources */,
