@@ -9,13 +9,14 @@ import UIKit
 
 class CloudViewController: UIViewController {
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    @IBAction func loginButtonPressed(_ sender: UIButton) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
     }
+    
   
 }

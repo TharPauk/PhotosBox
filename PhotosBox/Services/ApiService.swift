@@ -36,12 +36,12 @@ class ApiService {
             guard let data = response.data else { return }
             do {
                 let result = try JSONDecoder().decode(LoginResponse.self, from: data)
-                guard let token = result.data?.token else {
+                guard let user = result.data else {
                     completion(false, result.message)
                     return
                 }
-                print("token: \(token)")
                 
+                AuthService.shared.setLoginUser(user)
                 completion(true, result.message)
             } catch (let err) {
                 completion(false, err.localizedDescription)
@@ -57,12 +57,12 @@ class ApiService {
             guard let data = response.data else { return }
             do {
                 let result = try JSONDecoder().decode(LoginResponse.self, from: data)
-                guard let token = result.data?.token else {
+                guard let user = result.data else {
                     completion(false, result.message)
                     return
                 }
-                print("token: \(token)")
                 
+                AuthService.shared.setLoginUser(user)
                 completion(true, result.message)
             } catch (let err) {
                 completion(false, err.localizedDescription)

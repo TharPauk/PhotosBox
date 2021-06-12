@@ -9,11 +9,11 @@ import Foundation
 
 struct LoginResponse: Codable {
     let status: Int
-    let data: UserData?
+    let data: User?
     let message: String?
 }
 
-struct UserData: Codable {
+struct User: Codable {
     let _id: String
     let name: String
     let email: String
