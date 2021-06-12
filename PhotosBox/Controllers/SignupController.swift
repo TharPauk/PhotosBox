@@ -21,16 +21,9 @@ class SignupController: UIViewController {
     }
     
     
-    fileprivate func showError(with message: String) {
-        errorMessageTextView.text = message
-        errorMessageTextView.isHidden = false
-    }
-    
     @IBAction func signupButtonPressed(_ sender: UIButton) {
+        setSignupButtonState(isSigningIn: true)
         
-        signupButton.setTitle("SIGNING UP", for: .normal)
-        signupButton.isEnabled = false
-        signupButton.alpha = 0.5
         guard let name = nameTextField.text,
               name.count > 0,
               let email = emailTextField.text,
@@ -38,24 +31,30 @@ class SignupController: UIViewController {
               let password = passwordTextField.text,
               password.count > 0
         else {
-            print("here")
             showError(with: "Text Fields should not be empty!")
-            signupButton.setTitle("SIGN UP", for: .normal)
-            signupButton.isEnabled = true
-            signupButton.alpha = 1
+            setSignupButtonState(isSigningIn: false)
             return
         }
-        ApiService.shared.signup(name: name, email: email, password: password) { (success, message)  in
-            if success {
-                self.alertSuccess()
-            } else {
-                self.showError(with: message!)
-            }
-            self.signupButton.setTitle("SIGNUP", for: .normal)
-            self.signupButton.isEnabled = true
-            self.signupButton.alpha = 1
-        }
+        
+        ApiService.shared.signup(name: name, email: email, password: password,completion: handleSignUp(success:message:))
     }
+    
+    private func setSignupButtonState(isSigningIn: Bool) {
+        nameTextField.isEnabled = !isSigningIn
+        emailTextField.isEnabled = !isSigningIn
+        passwordTextField.isEnabled = !isSigningIn
+        
+        let buttonTitle = isSigningIn ? "SIGNING UP": "SIGN UP"
+        signupButton.setTitle(buttonTitle, for: .normal)
+        signupButton.isEnabled = !isSigningIn
+        signupButton.alpha = isSigningIn ? 0.5: 1.0
+    }
+    
+    private func handleSignUp(success: Bool, message: String?) {
+        success ? alertSuccess(): showError(with: message!)
+        self.setSignupButtonState(isSigningIn: false)
+    }
+    
     
     private func alertSuccess() {
         let alertController = UIAlertController(title: nil, message: "Sign Up Success", preferredStyle: .alert)
@@ -66,5 +65,10 @@ class SignupController: UIViewController {
         alertController.addAction(okAction)
         
         present(alertController, animated: true)
+    }
+    
+    private func showError(with message: String) {
+        errorMessageTextView.text = message
+        errorMessageTextView.isHidden = false
     }
 }

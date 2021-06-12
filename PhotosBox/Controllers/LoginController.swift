@@ -18,37 +18,37 @@ class LoginController: UIViewController {
         super.viewDidLoad()
     }
     
-    fileprivate func showError(with message: String) {
-        errorMessageTextView.text = message
-        errorMessageTextView.isHidden = false
-    }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        loginButton.setTitle("LOGGING IN", for: .normal)
-        loginButton.isEnabled = false
-        loginButton.alpha = 0.5
+        
+        setLoginButtonState(isLoggingIn: true)
         guard let email = emailTextField.text,
               email.count > 0,
               let password = passwordTextField.text,
               password.count > 0
         else {
-            print("here")
             showError(with: "Text Fields should not be empty!")
-            loginButton.setTitle("LOGIN", for: .normal)
-            loginButton.isEnabled = true
-            loginButton.alpha = 1
+            setLoginButtonState(isLoggingIn: false)
             return
         }
-        ApiService.shared.login(email: email, password: password) { (success, message)  in
-            if success {
-                self.alertSuccess()
-            } else {
-                self.showError(with: message!)
-            }
-            self.loginButton.setTitle("LOGIN", for: .normal)
-            self.loginButton.isEnabled = true
-            self.loginButton.alpha = 1
-        }
+        ApiService.shared.login(email: email, password: password,completion: handleLogin(success:message:))
+    }
+    
+    
+    private func setLoginButtonState(isLoggingIn: Bool) {
+        emailTextField.isEnabled = !isLoggingIn
+        passwordTextField.isEnabled = !isLoggingIn
+        
+        let buttonTitle = isLoggingIn ? "LOGGING IN": "LOGIN"
+        loginButton.setTitle(buttonTitle, for: .normal)
+        loginButton.isEnabled = !isLoggingIn
+        loginButton.alpha = isLoggingIn ? 0.5: 1.0
+    }
+    
+    
+    private func handleLogin(success: Bool, message: String?) {
+        success ? alertSuccess(): showError(with: message!)
+        setLoginButtonState(isLoggingIn: false)
     }
     
     private func alertSuccess() {
@@ -60,4 +60,10 @@ class LoginController: UIViewController {
         alertController.addAction(okAction)
         present(alertController, animated: true)
     }
+    
+    private func showError(with message: String) {
+        errorMessageTextView.text = message
+        errorMessageTextView.isHidden = false
+    }
+    
 }
