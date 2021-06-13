@@ -29,6 +29,12 @@ class PhotosViewController: GridCollectionView {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         uploadButton.isEnabled = false
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let PasscodeController = storyBoard.instantiateViewController(identifier: "PasscodeController") as! PasscodeController
+        
+        present(PasscodeController, animated: true)
+        
+
     }
     
     private func setupFetchedResultsController() {

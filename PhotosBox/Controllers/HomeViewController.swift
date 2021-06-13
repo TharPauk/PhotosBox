@@ -17,7 +17,8 @@ class HomeViewController: UITabBarController {
         let photosViewController = navController.viewControllers.first as! PhotosViewController
         photosViewController.dataController = self.dataController
     }
-
+    
+    
 
 }
 

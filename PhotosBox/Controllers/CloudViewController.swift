@@ -9,13 +9,16 @@ import UIKit
 
 class CloudViewController: UIViewController {
     
+    
+    @IBOutlet weak var loginSection: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        loginSection.isHidden = AuthService.shared.isLoggedIn
     }
     
   

@@ -117,6 +117,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Gdu-gX-pVD"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="loginSection" destination="hyq-7o-c8f" id="AN1-tb-hex"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQ2-8z-7CF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -445,6 +448,327 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sjd-Il-4ZU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-900" y="400"/>
+        </scene>
+        <!--Passcode Controller-->
+        <scene sceneID="K3W-lu-J6D">
+            <objects>
+                <viewController storyboardIdentifier="PasscodeController" modalPresentationStyle="overFullScreen" id="xKI-bv-XCy" customClass="PasscodeController" customModule="PhotosBox" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="926-CH-s30">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FOs-IY-tZy">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bJ6-5x-w97">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="hep-kj-5O2">
+                                            <rect key="frame" x="70" y="404" width="250" height="340"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="y3Z-eE-Kbz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="250" height="70"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uED-SC-2bb" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                            <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="70" id="7bd-T3-NAp"/>
+                                                                <constraint firstAttribute="width" constant="70" id="tVa-8q-iHl"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                            <state key="normal" title="1">
+                                                                <color key="titleColor" systemColor="labelColor"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="35"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="pressedPasscode:" destination="xKI-bv-XCy" eventType="touchUpInside" id="Zwc-lV-cOi"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DaU-JW-njJ" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                            <rect key="frame" x="90" y="0.0" width="70" height="70"/>
+                                                            <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="70" id="9Tz-6N-XSq"/>
+                                                                <constraint firstAttribute="height" constant="70" id="Bre-tQ-5rL"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                            <state key="normal" title="2">
+                                                                <color key="titleColor" systemColor="labelColor"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="35"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                    <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                    <real key="value" value="0.0"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="pressedPasscode:" destination="xKI-bv-XCy" eventType="touchUpInside" id="ovm-wc-f9u"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWK-3f-2E1" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                            <rect key="frame" x="180" y="0.0" width="70" height="70"/>
+                                                            <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="70" id="kee-3M-EyB"/>
+                                                                <constraint firstAttribute="height" constant="70" id="rSQ-PW-ImG"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                            <state key="normal" title="3">
+                                                                <color key="titleColor" systemColor="labelColor"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="35"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="pressedPasscode:" destination="xKI-bv-XCy" eventType="touchUpInside" id="Rp8-wo-ImW"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5Vu-Tu-Y1C">
+                                                    <rect key="frame" x="0.0" y="90" width="250" height="70"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eK-nI-4d2" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                            <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="70" id="B6q-9T-4gX"/>
+                                                                <constraint firstAttribute="width" constant="70" id="MvK-pe-WNQ"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                            <state key="normal" title="4">
+                                                                <color key="titleColor" systemColor="labelColor"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="35"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="pressedPasscode:" destination="xKI-bv-XCy" eventType="touchUpInside" id="Njn-aG-0tO"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTR-Jr-fMK" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                            <rect key="frame" x="90" y="0.0" width="70" height="70"/>
+                                                            <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="70" id="4cx-NM-cJs"/>
+                                                                <constraint firstAttribute="width" constant="70" id="7ac-pd-f8b"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                            <state key="normal" title="5">
+                                                                <color key="titleColor" systemColor="labelColor"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="35"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="pressedPasscode:" destination="xKI-bv-XCy" eventType="touchUpInside" id="k7k-4t-4hT"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fW-FN-faJ" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                            <rect key="frame" x="180" y="0.0" width="70" height="70"/>
+                                                            <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="70" id="Kdn-ya-kWQ"/>
+                                                                <constraint firstAttribute="height" constant="70" id="yiI-Pj-3Uc"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                            <state key="normal" title="6">
+                                                                <color key="titleColor" systemColor="labelColor"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="35"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="pressedPasscode:" destination="xKI-bv-XCy" eventType="touchUpInside" id="w5i-vf-V9v"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kiL-a0-ENd">
+                                                    <rect key="frame" x="0.0" y="180" width="250" height="70"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="545-A4-fTf" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                            <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="70" id="je3-hq-R1l"/>
+                                                                <constraint firstAttribute="height" constant="70" id="nBO-sF-RzP"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                            <state key="normal" title="7">
+                                                                <color key="titleColor" systemColor="labelColor"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="35"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="pressedPasscode:" destination="xKI-bv-XCy" eventType="touchUpInside" id="ioD-Kt-8dw"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6d-Th-KmE" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                            <rect key="frame" x="90" y="0.0" width="70" height="70"/>
+                                                            <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="70" id="4PR-Me-uDO"/>
+                                                                <constraint firstAttribute="height" constant="70" id="8oU-0B-mkn"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                            <state key="normal" title="8">
+                                                                <color key="titleColor" systemColor="labelColor"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="35"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="pressedPasscode:" destination="xKI-bv-XCy" eventType="touchUpInside" id="7Ax-XV-30r"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRd-Ce-IYK" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                            <rect key="frame" x="180" y="0.0" width="70" height="70"/>
+                                                            <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="70" id="mLo-sa-Ma1"/>
+                                                                <constraint firstAttribute="height" constant="70" id="tyP-lh-LJG"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                            <state key="normal" title="9">
+                                                                <color key="titleColor" systemColor="labelColor"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="35"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="pressedPasscode:" destination="xKI-bv-XCy" eventType="touchUpInside" id="iCP-a0-LQa"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="zzQ-Kn-fWG">
+                                                    <rect key="frame" x="0.0" y="270" width="250" height="70"/>
+                                                    <subviews>
+                                                        <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KZP-JP-fj4">
+                                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="70" id="X0Y-zx-wAW"/>
+                                                                <constraint firstAttribute="width" constant="70" id="uIX-lI-4N2"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thO-RT-zpP" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                            <rect key="frame" x="90" y="0.0" width="70" height="70"/>
+                                                            <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="70" id="8UC-Gb-wj3"/>
+                                                                <constraint firstAttribute="height" constant="70" id="nAr-gp-WI4"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                            <state key="normal" title="0">
+                                                                <color key="titleColor" systemColor="labelColor"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="35"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="pressedPasscode:" destination="xKI-bv-XCy" eventType="touchUpInside" id="H8T-xh-Jnl"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5oB-Q9-iTG" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                            <rect key="frame" x="180" y="0.0" width="70" height="70"/>
+                                                            <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="70" id="jrt-yF-TKz"/>
+                                                                <constraint firstAttribute="width" constant="70" id="mrv-zI-ihO"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                                            <state key="normal" title="DEL">
+                                                                <color key="titleColor" systemColor="labelColor"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="35"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="pressedPasscode:" destination="xKI-bv-XCy" eventType="touchUpInside" id="vqf-7v-TQo"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                        <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UjK-Bg-3tL">
+                                            <rect key="frame" x="16" y="314" width="358" height="40"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="ClC-6I-HUB"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONFIRM PASSCODE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Slf-ef-tcQ">
+                                            <rect key="frame" x="89" y="90" width="212" height="27.666666666666671"/>
+                                            <fontDescription key="fontDescription" name="AppleSymbols" family="Apple Symbols" pointSize="30"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="hep-kj-5O2" firstAttribute="top" secondItem="UjK-Bg-3tL" secondAttribute="bottom" constant="50" id="Tsr-kq-XLj"/>
+                                        <constraint firstItem="hep-kj-5O2" firstAttribute="centerX" secondItem="bJ6-5x-w97" secondAttribute="centerX" id="c4K-Wm-Lf0"/>
+                                        <constraint firstItem="Slf-ef-tcQ" firstAttribute="top" secondItem="bJ6-5x-w97" secondAttribute="top" constant="90" id="jYB-SI-4c4"/>
+                                        <constraint firstAttribute="trailing" secondItem="UjK-Bg-3tL" secondAttribute="trailing" constant="16" id="l4e-JL-FwU"/>
+                                        <constraint firstItem="Slf-ef-tcQ" firstAttribute="centerX" secondItem="bJ6-5x-w97" secondAttribute="centerX" id="oa7-YF-yB4"/>
+                                        <constraint firstItem="UjK-Bg-3tL" firstAttribute="leading" secondItem="bJ6-5x-w97" secondAttribute="leading" constant="16" id="pwd-YC-q3U"/>
+                                        <constraint firstAttribute="bottom" secondItem="hep-kj-5O2" secondAttribute="bottom" constant="100" id="v2d-wY-b9Y"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="regular"/>
+                            </visualEffectView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="W2V-wB-DWZ"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FOs-IY-tZy" firstAttribute="trailing" secondItem="W2V-wB-DWZ" secondAttribute="trailing" id="6hb-ub-Ren"/>
+                            <constraint firstItem="FOs-IY-tZy" firstAttribute="leading" secondItem="W2V-wB-DWZ" secondAttribute="leading" id="Jl5-bh-cvT"/>
+                            <constraint firstItem="FOs-IY-tZy" firstAttribute="top" secondItem="926-CH-s30" secondAttribute="top" id="Y2l-0g-ft4"/>
+                            <constraint firstAttribute="bottom" secondItem="FOs-IY-tZy" secondAttribute="bottom" id="cqG-zm-pgM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textField" destination="UjK-Bg-3tL" id="VAN-Wd-2GS"/>
+                        <outlet property="titleLabel" destination="Slf-ef-tcQ" id="yZX-KE-F0R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KVn-HM-eji" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-900" y="1107.5829383886255"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2HK-B2-rLc">
@@ -865,11 +1189,44 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="0fW-FN-faJ">
+            <size key="intrinsicContentSize" width="30" height="48"/>
+        </designable>
+        <designable name="545-A4-fTf">
+            <size key="intrinsicContentSize" width="30" height="48"/>
+        </designable>
+        <designable name="5eK-nI-4d2">
+            <size key="intrinsicContentSize" width="30" height="48"/>
+        </designable>
+        <designable name="5oB-Q9-iTG">
+            <size key="intrinsicContentSize" width="44" height="41"/>
+        </designable>
+        <designable name="DaU-JW-njJ">
+            <size key="intrinsicContentSize" width="30" height="48"/>
+        </designable>
         <designable name="ReU-aO-oWV">
             <size key="intrinsicContentSize" width="55" height="47"/>
         </designable>
+        <designable name="ZWK-3f-2E1">
+            <size key="intrinsicContentSize" width="30" height="48"/>
+        </designable>
         <designable name="bPK-bh-UcO">
             <size key="intrinsicContentSize" width="50" height="32"/>
+        </designable>
+        <designable name="e6d-Th-KmE">
+            <size key="intrinsicContentSize" width="30" height="48"/>
+        </designable>
+        <designable name="gTR-Jr-fMK">
+            <size key="intrinsicContentSize" width="30" height="48"/>
+        </designable>
+        <designable name="rRd-Ce-IYK">
+            <size key="intrinsicContentSize" width="30" height="48"/>
+        </designable>
+        <designable name="thO-RT-zpP">
+            <size key="intrinsicContentSize" width="30" height="48"/>
+        </designable>
+        <designable name="uED-SC-2bb">
+            <size key="intrinsicContentSize" width="30" height="48"/>
         </designable>
         <designable name="zPC-aj-Vzd">
             <size key="intrinsicContentSize" width="66" height="32"/>
@@ -880,6 +1237,9 @@
         <image name="selected_photo_icon" width="21.333333969116211" height="21.333333969116211"/>
         <image name="unselected_cloud_icon" width="21.333333969116211" height="21.333333969116211"/>
         <image name="unselected_photo_icon" width="21.333333969116211" height="21.333333969116211"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="separatorColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -894,6 +1254,9 @@
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiarySystemFillColor">
+            <color red="0.46274509803921571" green="0.46274509803921571" blue="0.50196078431372548" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
