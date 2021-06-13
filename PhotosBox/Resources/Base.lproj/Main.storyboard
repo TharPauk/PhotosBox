@@ -469,7 +469,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="y3Z-eE-Kbz">
                                                     <rect key="frame" x="0.0" y="0.0" width="250" height="70"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uED-SC-2bb" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                        <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uED-SC-2bb" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                             <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                                             <constraints>
@@ -489,7 +489,7 @@
                                                                 <action selector="pressedPasscode:" destination="xKI-bv-XCy" eventType="touchUpInside" id="Zwc-lV-cOi"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DaU-JW-njJ" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                        <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DaU-JW-njJ" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
                                                             <rect key="frame" x="90" y="0.0" width="70" height="70"/>
                                                             <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                                             <constraints>
@@ -515,7 +515,7 @@
                                                                 <action selector="pressedPasscode:" destination="xKI-bv-XCy" eventType="touchUpInside" id="ovm-wc-f9u"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWK-3f-2E1" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                        <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWK-3f-2E1" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
                                                             <rect key="frame" x="180" y="0.0" width="70" height="70"/>
                                                             <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                                             <constraints>
@@ -540,7 +540,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5Vu-Tu-Y1C">
                                                     <rect key="frame" x="0.0" y="90" width="250" height="70"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eK-nI-4d2" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                        <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eK-nI-4d2" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                             <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                                             <constraints>
@@ -560,7 +560,7 @@
                                                                 <action selector="pressedPasscode:" destination="xKI-bv-XCy" eventType="touchUpInside" id="Njn-aG-0tO"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTR-Jr-fMK" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                        <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTR-Jr-fMK" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
                                                             <rect key="frame" x="90" y="0.0" width="70" height="70"/>
                                                             <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                                             <constraints>
@@ -580,7 +580,7 @@
                                                                 <action selector="pressedPasscode:" destination="xKI-bv-XCy" eventType="touchUpInside" id="k7k-4t-4hT"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fW-FN-faJ" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                        <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fW-FN-faJ" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
                                                             <rect key="frame" x="180" y="0.0" width="70" height="70"/>
                                                             <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                                             <constraints>
@@ -605,7 +605,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kiL-a0-ENd">
                                                     <rect key="frame" x="0.0" y="180" width="250" height="70"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="545-A4-fTf" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                        <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="545-A4-fTf" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                             <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                                             <constraints>
@@ -625,7 +625,7 @@
                                                                 <action selector="pressedPasscode:" destination="xKI-bv-XCy" eventType="touchUpInside" id="ioD-Kt-8dw"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6d-Th-KmE" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                        <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6d-Th-KmE" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
                                                             <rect key="frame" x="90" y="0.0" width="70" height="70"/>
                                                             <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                                             <constraints>
@@ -645,7 +645,7 @@
                                                                 <action selector="pressedPasscode:" destination="xKI-bv-XCy" eventType="touchUpInside" id="7Ax-XV-30r"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRd-Ce-IYK" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                        <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRd-Ce-IYK" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
                                                             <rect key="frame" x="180" y="0.0" width="70" height="70"/>
                                                             <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                                             <constraints>
@@ -678,7 +678,7 @@
                                                                 <constraint firstAttribute="width" constant="70" id="uIX-lI-4N2"/>
                                                             </constraints>
                                                         </view>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thO-RT-zpP" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                        <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thO-RT-zpP" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
                                                             <rect key="frame" x="90" y="0.0" width="70" height="70"/>
                                                             <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                                             <constraints>
@@ -698,7 +698,7 @@
                                                                 <action selector="pressedPasscode:" destination="xKI-bv-XCy" eventType="touchUpInside" id="H8T-xh-Jnl"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5oB-Q9-iTG" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
+                                                        <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5oB-Q9-iTG" customClass="RoundedButton" customModule="PhotosBox" customModuleProvider="target">
                                                             <rect key="frame" x="180" y="0.0" width="70" height="70"/>
                                                             <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                                             <constraints>
@@ -731,17 +731,30 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                             <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         </textField>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONFIRM PASSCODE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Slf-ef-tcQ">
-                                            <rect key="frame" x="89" y="90" width="212" height="27.666666666666671"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENTER PASSCODE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Slf-ef-tcQ">
+                                            <rect key="frame" x="101.66666666666667" y="90" width="186.66666666666663" height="27.666666666666671"/>
                                             <fontDescription key="fontDescription" name="AppleSymbols" family="Apple Symbols" pointSize="30"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Incorrect passcode please try again." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SuT-GK-Xqm">
+                                            <rect key="frame" x="20" y="234" width="350" height="60"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="60" id="9tG-O5-oBb"/>
+                                            </constraints>
+                                            <color key="textColor" systemColor="systemRedColor"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
+                                        <constraint firstItem="SuT-GK-Xqm" firstAttribute="leading" secondItem="bJ6-5x-w97" secondAttribute="leading" constant="20" id="NIi-JK-R4i"/>
+                                        <constraint firstItem="UjK-Bg-3tL" firstAttribute="top" secondItem="SuT-GK-Xqm" secondAttribute="bottom" constant="20" id="RTA-cY-cIU"/>
                                         <constraint firstItem="hep-kj-5O2" firstAttribute="top" secondItem="UjK-Bg-3tL" secondAttribute="bottom" constant="50" id="Tsr-kq-XLj"/>
                                         <constraint firstItem="hep-kj-5O2" firstAttribute="centerX" secondItem="bJ6-5x-w97" secondAttribute="centerX" id="c4K-Wm-Lf0"/>
+                                        <constraint firstAttribute="trailing" secondItem="SuT-GK-Xqm" secondAttribute="trailing" constant="20" id="cyF-hf-rAG"/>
                                         <constraint firstItem="Slf-ef-tcQ" firstAttribute="top" secondItem="bJ6-5x-w97" secondAttribute="top" constant="90" id="jYB-SI-4c4"/>
                                         <constraint firstAttribute="trailing" secondItem="UjK-Bg-3tL" secondAttribute="trailing" constant="16" id="l4e-JL-FwU"/>
                                         <constraint firstItem="Slf-ef-tcQ" firstAttribute="centerX" secondItem="bJ6-5x-w97" secondAttribute="centerX" id="oa7-YF-yB4"/>
@@ -762,6 +775,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="errorMessage" destination="SuT-GK-Xqm" id="xAg-2i-aXL"/>
                         <outlet property="textField" destination="UjK-Bg-3tL" id="VAN-Wd-2GS"/>
                         <outlet property="titleLabel" destination="Slf-ef-tcQ" id="yZX-KE-F0R"/>
                     </connections>
@@ -910,6 +924,9 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="Rqe-US-OC1"/>
                                         </constraints>
+                                        <connections>
+                                            <action selector="switchChanged:" destination="NCj-kh-CyY" eventType="valueChanged" id="LTZ-RO-8bI"/>
+                                        </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Passcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqs-ST-jTd">
                                         <rect key="frame" x="16" y="12" width="78" height="21"/>
@@ -947,6 +964,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="passcodeSwitch" destination="Pqz-dD-3sS" id="cS7-rP-c4l"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iER-tk-V5A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

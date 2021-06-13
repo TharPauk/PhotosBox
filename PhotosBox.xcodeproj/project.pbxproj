@@ -30,6 +30,7 @@
 		D9B938052674BBA4006EE067 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B938042674BBA4006EE067 /* ApiService.swift */; };
 		D9B938142674C9C9006EE067 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B938132674C9C9006EE067 /* LoginResponse.swift */; };
 		D9BB539B2675E220008F6740 /* PasscodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB539A2675E220008F6740 /* PasscodeController.swift */; };
+		D9BB53A32675F174008F6740 /* PasscodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB53A22675F174008F6740 /* PasscodeService.swift */; };
 		D9F5B5DF2673B7CA005FE784 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F5B5DE2673B7CA005FE784 /* RoundedButton.swift */; };
 		D9F5B5E22673CB60005FE784 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F5B5E12673CB60005FE784 /* RoundedTextField.swift */; };
 		EAB0E94D832CC92CA8CDDDC4 /* Pods_PhotosBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EF0F254AB3B627B4E4734A4 /* Pods_PhotosBox.framework */; };
@@ -64,6 +65,7 @@
 		D9B938042674BBA4006EE067 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		D9B938132674C9C9006EE067 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		D9BB539A2675E220008F6740 /* PasscodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeController.swift; sourceTree = "<group>"; };
+		D9BB53A22675F174008F6740 /* PasscodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeService.swift; sourceTree = "<group>"; };
 		D9F5B5DE2673B7CA005FE784 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		D9F5B5E12673CB60005FE784 /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -200,6 +202,7 @@
 			children = (
 				D9B938042674BBA4006EE067 /* ApiService.swift */,
 				D967FD49267534D6006736B0 /* AuthService.swift */,
+				D9BB53A22675F174008F6740 /* PasscodeService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				D9182740266BB99F006281BE /* SceneDelegate.swift in Sources */,
 				D989860D266E6E4E002578F6 /* PhotoDetailController.swift in Sources */,
 				D9B937F72674B8EC006EE067 /* LoginController.swift in Sources */,
+				D9BB53A32675F174008F6740 /* PasscodeService.swift in Sources */,
 				D9B937F42674B8DD006EE067 /* SignupController.swift in Sources */,
 				D9F5B5DF2673B7CA005FE784 /* RoundedButton.swift in Sources */,
 				D9B938052674BBA4006EE067 /* ApiService.swift in Sources */,

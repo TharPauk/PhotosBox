@@ -8,15 +8,16 @@
 import Foundation
 import KeychainSwift
 
-enum Keys: String {
-    case token, isLoggedIn, userId, username
-}
 
 class AuthService : NSObject {
     
     static let shared = AuthService()
     private let keychain = KeychainSwift()
     private let defaults = UserDefaults.standard
+    
+    private enum Keys: String {
+        case token, isLoggedIn, userId, username
+    }
     
     private(set) var userId: String? {
         get {

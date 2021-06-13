@@ -24,17 +24,21 @@ class PhotosViewController: GridCollectionView {
         super.viewDidLoad()
         setupCollectionView()
         setupFetchedResultsController()
+        showPasscodeScreen()
     }
-    
+  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         uploadButton.isEnabled = false
+    }
+    
+    private func showPasscodeScreen() {
+        guard PasscodeService.shared.isPasscodeOn else { return }
+        
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let PasscodeController = storyBoard.instantiateViewController(identifier: "PasscodeController") as! PasscodeController
-        
-        present(PasscodeController, animated: true)
-        
-
+        let passcodeController = storyBoard.instantiateViewController(identifier: "PasscodeController") as! PasscodeController
+        passcodeController.screenType = .unlock
+        present(passcodeController, animated: false)
     }
     
     private func setupFetchedResultsController() {

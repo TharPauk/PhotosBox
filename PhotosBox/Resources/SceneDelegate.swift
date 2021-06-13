@@ -16,6 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         dataController.load()
         let rootViewController = window?.rootViewController as! HomeViewController
         rootViewController.dataController = dataController
+        
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
