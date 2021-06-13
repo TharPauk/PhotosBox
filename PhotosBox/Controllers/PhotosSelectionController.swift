@@ -54,11 +54,14 @@ class PhotosSelectionController: GridCollectionView {
         }
         
         PHPhotoLibrary.requestAuthorization { (status) in
-            if status == .authorized {
-                self.collectionView.reloadData()
+            DispatchQueue.main.async {
+                if status == .authorized {
+                    self.collectionView.reloadData()
+                } else {
+                    self.goToSettingsAlert()
+                }
             }
         }
-        self.goToSettingsAlert()
     }
     
     private func loadPhotos() {

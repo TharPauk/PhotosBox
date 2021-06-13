@@ -67,8 +67,7 @@ class PasscodeController: UIViewController {
             
             if PasscodeService.shared.passcode == enteredPin {
                 self.dismiss(animated: true)
-            }
-            if enteredPin.count > 5 {
+            } else if enteredPin.count > 5 {
                 enteredPin = ""
                 errorMessage.text = "Incorrect passcode please try again."
                 errorMessage.isHidden = false

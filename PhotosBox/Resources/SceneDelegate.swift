@@ -16,8 +16,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         dataController.load()
         let rootViewController = window?.rootViewController as! HomeViewController
         rootViewController.dataController = dataController
+        checkIfFirstLaunch()
         
         guard let _ = (scene as? UIWindowScene) else { return }
+    }
+    
+    private func checkIfFirstLaunch() {
+        if UserDefaults.standard.bool(forKey: "hasLaunchBefore") != true {
+            PasscodeService.shared.savePasscode(nil)
+            UserDefaults.standard.set(true, forKey: "hasLaunchBefore")
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
