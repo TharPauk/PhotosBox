@@ -16,11 +16,13 @@ class ApiService {
         
         case signup
         case login
+        case upload
         
         var stringValue: String {
             switch self {
             case .signup: return "\(Endpoints.baseUrl)/users/signup"
             case .login: return "\(Endpoints.baseUrl)/users/login"
+            case .upload: return "\(Endpoints.baseUrl)/posts/"
             }
         }
         
@@ -68,6 +70,30 @@ class ApiService {
                 completion(false, err.localizedDescription)
             }
         }
+    }
+    
+    
+    func upload(images: [Data], progressUpdate: @escaping (Progress) -> Void, completion: @escaping (Bool, String?) -> Void) {
+        guard let token = AuthService.shared.token else { return }
+        
+        let headers = HTTPHeaders(arrayLiteral: HTTPHeader(name: "Content-Type", value: "application/x-www-form-urlencoded"), HTTPHeader(name: "Authorization", value: token))
+    
+      
+        AF.upload(multipartFormData: { (formData) in
+            
+            images.forEach {
+                formData.append($0, withName: "images", fileName: "\(UUID().uuidString).png", mimeType: "image/png")
+            }
+            
+        }, to: Endpoints.upload.url, method: .post, headers: headers)
+        .responseJSON(completionHandler: { (resp) in
+            if let err = resp.error {
+                fatalError("Error in creating post reponse : \(err.localizedDescription)")
+            }
+            print("status = \(resp.response?.statusCode)")
+            completion(true, nil)
+        }).uploadProgress(closure: progressUpdate)
+        
     }
     
     

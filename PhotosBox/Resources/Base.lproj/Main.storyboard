@@ -384,6 +384,9 @@
                             </barButtonItem>
                             <barButtonItem systemItem="action" id="2d2-vX-At0">
                                 <color key="tintColor" systemColor="systemBlueColor"/>
+                                <connections>
+                                    <action selector="uploadButtonPressed:" destination="KJg-za-gQy" id="LPR-mQ-kuv"/>
+                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>

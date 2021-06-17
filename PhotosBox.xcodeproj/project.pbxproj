@@ -31,6 +31,7 @@
 		D9B938142674C9C9006EE067 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B938132674C9C9006EE067 /* LoginResponse.swift */; };
 		D9BB539B2675E220008F6740 /* PasscodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB539A2675E220008F6740 /* PasscodeController.swift */; };
 		D9BB53A32675F174008F6740 /* PasscodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB53A22675F174008F6740 /* PasscodeService.swift */; };
+		D9DA9424267B5C6500C2E073 /* FetchPostsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DA9423267B5C6500C2E073 /* FetchPostsResponse.swift */; };
 		D9F5B5DF2673B7CA005FE784 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F5B5DE2673B7CA005FE784 /* RoundedButton.swift */; };
 		D9F5B5E22673CB60005FE784 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F5B5E12673CB60005FE784 /* RoundedTextField.swift */; };
 		EAB0E94D832CC92CA8CDDDC4 /* Pods_PhotosBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EF0F254AB3B627B4E4734A4 /* Pods_PhotosBox.framework */; };
@@ -66,6 +67,7 @@
 		D9B938132674C9C9006EE067 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		D9BB539A2675E220008F6740 /* PasscodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeController.swift; sourceTree = "<group>"; };
 		D9BB53A22675F174008F6740 /* PasscodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeService.swift; sourceTree = "<group>"; };
+		D9DA9423267B5C6500C2E073 /* FetchPostsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPostsResponse.swift; sourceTree = "<group>"; };
 		D9F5B5DE2673B7CA005FE784 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		D9F5B5E12673CB60005FE784 /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -173,6 +175,7 @@
 				D94D508C266FB8230056D089 /* PhotosBox.xcdatamodeld */,
 				D94D5090266FB8E60056D089 /* Photo+Extensions.swift */,
 				D9B938132674C9C9006EE067 /* LoginResponse.swift */,
+				D9DA9423267B5C6500C2E073 /* FetchPostsResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				D918273E266BB99F006281BE /* AppDelegate.swift in Sources */,
 				D967FD50267541EB006736B0 /* SettingsController.swift in Sources */,
 				D9BB539B2675E220008F6740 /* PasscodeController.swift in Sources */,
+				D9DA9424267B5C6500C2E073 /* FetchPostsResponse.swift in Sources */,
 				D94D508E266FB8230056D089 /* PhotosBox.xcdatamodeld in Sources */,
 				D960D8F1266BCB590007B2C5 /* CloudViewController.swift in Sources */,
 				D9253183266BC93D0006E61F /* PhotosViewController.swift in Sources */,

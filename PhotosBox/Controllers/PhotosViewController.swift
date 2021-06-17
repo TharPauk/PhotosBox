@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import JGProgressHUD
 
 
 class PhotosViewController: GridCollectionView {
@@ -19,6 +20,15 @@ class PhotosViewController: GridCollectionView {
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var uploadButton: UIBarButtonItem!
     @IBOutlet weak var addButton: UIBarButtonItem!
+    
+    private let progressHud: JGProgressHUD = {
+        let hud = JGProgressHUD()
+        hud.indicatorView = JGProgressHUDRingIndicatorView()
+        hud.textLabel.text = "Uploading"
+        hud.progress = 0
+        hud.dismiss(afterDelay: 0.0)
+        return hud
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +77,36 @@ class PhotosViewController: GridCollectionView {
         uploadButton.isEnabled = isSelecting
         sender.title = isSelecting ? "Done" : "Select"
     }
+    
+    @IBAction func uploadButtonPressed(_ sender: UIBarButtonItem) {
+        guard let _ = fetchedResultsController.fetchedObjects,
+              let selectedIndexPaths = collectionView.indexPathsForSelectedItems,
+              selectedIndexPaths.count > 0
+        else { return }
+        
+        let images: [Data] = selectedIndexPaths.compactMap { indexPathToPngData($0) }
+        progressHud.show(in: self.view)
+        
+        ApiService.shared.upload(images: images, progressUpdate: updateProgress(progress:)) { (success, message) in
+            self.progressHud.dismiss(animated: true)
+            self.collectionView.indexPathsForSelectedItems?.forEach{
+                self.collectionView.deselectItem(at: $0, animated: false)
+            }
+        }
+    }
+    
+    private func updateProgress(progress: Progress) {
+        let progressInFloat = Float(progress.fractionCompleted)
+        
+        progressHud.progress = progressInFloat
+        progressHud.detailTextLabel.text = "\(Int(progressInFloat * 100))% complete"
+    }
+    
+    private func indexPathToPngData(_ indexPath: IndexPath) -> Data {
+        let data = fetchedResultsController.fetchedObjects![indexPath.item].data
+        return (UIImage(data: data!)?.pngData())!
+    }
+    
     
     private func setupCollectionView() {
         collectionView.delegate = self

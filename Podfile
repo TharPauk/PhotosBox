@@ -8,5 +8,5 @@ target 'PhotosBox' do
   # Pods for PhotosBox
   pod 'Alamofire', '~> 5.2'
   pod 'KeychainSwift', '~> 19.0'
-
+  pod 'JGProgressHUD'
 end
