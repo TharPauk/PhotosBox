@@ -7,6 +7,7 @@
 
 import UIKit
 import Photos
+import SDWebImage
 
 class PhotoCell: UICollectionViewCell, UIContextMenuInteractionDelegate {
     
@@ -42,6 +43,11 @@ class PhotoCell: UICollectionViewCell, UIContextMenuInteractionDelegate {
         }
         
         PHImageManager.default().requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFill, options: nil, resultHandler: resultHandler)
+    }
+    
+    func requestImage(urlString: String) {
+        let url = URL(string: urlString)
+        imageView.sd_setImage(with: url)
     }
     
     func selectItem() {

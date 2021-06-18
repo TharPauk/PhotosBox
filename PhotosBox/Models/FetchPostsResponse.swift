@@ -9,7 +9,7 @@ import Foundation
 
 struct FetchPostsResponse: Codable {
     let status: Int
-    let data: PhotoInfo?
+    let data: [PhotoInfo]
     let message: String?
     let total: Int?
 }

@@ -2,23 +2,29 @@ PODS:
   - Alamofire (5.4.3)
   - JGProgressHUD (2.2)
   - KeychainSwift (19.0.0)
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - JGProgressHUD
   - KeychainSwift (~> 19.0)
+  - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - JGProgressHUD
     - KeychainSwift
+    - SDWebImage
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
   KeychainSwift: a06190cf933ad46b1e0abc3d77d29c06331715c7
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
 
-PODFILE CHECKSUM: e8d285a77fb85b2692fd9393fb9713df59ef5765
+PODFILE CHECKSUM: e882e94c20749721054a3087c17f9629f9dcd343
 
 COCOAPODS: 1.10.1

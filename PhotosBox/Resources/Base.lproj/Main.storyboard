@@ -34,11 +34,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hyq-7o-c8f">
-                                <rect key="frame" x="0.0" y="140" width="390" height="621"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yrP-rz-on5">
+                                <rect key="frame" x="0.0" y="88" width="390" height="673"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v2U-Lr-GYC">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="PhotoCell" reuseIdentifier="PhotoCell" id="s8q-hp-sQi" customClass="PhotoCell" customModule="PhotosBox" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kea-eY-aJl">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VzB-om-7Ux">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </collectionViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="VzB-om-7Ux" id="zKI-Ms-xOx"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hyq-7o-c8f">
+                                <rect key="frame" x="0.0" y="88" width="390" height="673"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WjX-7l-Nd6">
-                                        <rect key="frame" x="88.333333333333329" y="256.66666666666669" width="213.33333333333337" height="108"/>
+                                        <rect key="frame" x="88.333333333333329" y="282.66666666666669" width="213.33333333333337" height="108"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are not logged in yet!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZf-2y-PQJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="213.33333333333334" height="36"/>
@@ -102,9 +132,13 @@
                         <viewLayoutGuide key="safeArea" id="KGu-UE-avi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="yrP-rz-on5" firstAttribute="trailing" secondItem="KGu-UE-avi" secondAttribute="trailing" id="8c9-do-VyB"/>
                             <constraint firstItem="hyq-7o-c8f" firstAttribute="bottom" secondItem="KGu-UE-avi" secondAttribute="bottom" id="ITI-NH-zzF"/>
                             <constraint firstItem="hyq-7o-c8f" firstAttribute="top" secondItem="KGu-UE-avi" secondAttribute="top" id="PEF-TC-VPI"/>
+                            <constraint firstItem="yrP-rz-on5" firstAttribute="leading" secondItem="KGu-UE-avi" secondAttribute="leading" id="WCG-sI-XZo"/>
+                            <constraint firstItem="yrP-rz-on5" firstAttribute="top" secondItem="KGu-UE-avi" secondAttribute="top" id="cyW-8b-I6a"/>
                             <constraint firstItem="hyq-7o-c8f" firstAttribute="trailing" secondItem="KGu-UE-avi" secondAttribute="trailing" id="gAa-Fq-bh9"/>
+                            <constraint firstItem="yrP-rz-on5" firstAttribute="bottom" secondItem="KGu-UE-avi" secondAttribute="bottom" id="gu1-B6-htk"/>
                             <constraint firstItem="hyq-7o-c8f" firstAttribute="leading" secondItem="KGu-UE-avi" secondAttribute="leading" id="ra5-xJ-vhO"/>
                         </constraints>
                     </view>
@@ -118,6 +152,8 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Gdu-gX-pVD"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="collectionView" destination="yrP-rz-on5" id="DaL-oy-t8m"/>
+                        <outlet property="flowLayout" destination="v2U-Lr-GYC" id="Fbv-nk-btU"/>
                         <outlet property="loginSection" destination="hyq-7o-c8f" id="AN1-tb-hex"/>
                     </connections>
                 </viewController>
@@ -905,6 +941,9 @@
                                         <color key="value" systemColor="separatorColor"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="logoutButtonPressed:" destination="NCj-kh-CyY" eventType="touchUpInside" id="Rk2-WI-ucp"/>
+                                </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8DD-qF-Nso">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
@@ -968,6 +1007,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="logoutButton" destination="ReU-aO-oWV" id="Yh2-zn-fjs"/>
                         <outlet property="passcodeSwitch" destination="Pqz-dD-3sS" id="cS7-rP-c4l"/>
                     </connections>
                 </viewController>

@@ -10,6 +10,7 @@ import UIKit
 class SettingsController: UIViewController {
     
     @IBOutlet weak var passcodeSwitch: UISwitch!
+    @IBOutlet weak var logoutButton: RoundedButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +19,7 @@ class SettingsController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         passcodeSwitch.isOn = PasscodeService.shared.isPasscodeOn
+        logoutButton.isHidden = !AuthService.shared.isLoggedIn
     }
     
     @IBAction func doneButtonPressed(_ sender: Any) {
@@ -31,6 +33,12 @@ class SettingsController: UIViewController {
             PasscodeService.shared.savePasscode(nil)
         }
     }
+    
+    @IBAction func logoutButtonPressed(_ sender: UIButton) {
+        AuthService.shared.removeLoginUser()
+        self.dismiss(animated: true)
+    }
+    
     
     private func showPasscodeScreen(with title: String) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)

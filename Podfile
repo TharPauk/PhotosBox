@@ -9,4 +9,5 @@ target 'PhotosBox' do
   pod 'Alamofire', '~> 5.2'
   pod 'KeychainSwift', '~> 19.0'
   pod 'JGProgressHUD'
+  pod 'SDWebImage', '~> 5.0'
 end

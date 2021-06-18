@@ -17,12 +17,14 @@ class ApiService {
         case signup
         case login
         case upload
+        case fetchPhotos
         
         var stringValue: String {
             switch self {
             case .signup: return "\(Endpoints.baseUrl)/users/signup"
             case .login: return "\(Endpoints.baseUrl)/users/login"
             case .upload: return "\(Endpoints.baseUrl)/posts/"
+            case .fetchPhotos: return "\(Endpoints.baseUrl)/posts/"
             }
         }
         
@@ -88,14 +90,31 @@ class ApiService {
         }, to: Endpoints.upload.url, method: .post, headers: headers)
         .responseJSON(completionHandler: { (resp) in
             if let err = resp.error {
-                fatalError("Error in creating post reponse : \(err.localizedDescription)")
+                completion(false, err.localizedDescription)
             }
-            print("status = \(resp.response?.statusCode)")
             completion(true, nil)
         }).uploadProgress(closure: progressUpdate)
         
     }
     
+    func getPhotos(completion: @escaping (Bool, [PhotoInfo]) -> Void) {
+        guard let token = AuthService.shared.token else { return }
+        
+        let headers = HTTPHeaders(arrayLiteral: HTTPHeader(name: "Content-Type", value: "application/x-www-form-urlencoded"), HTTPHeader(name: "Authorization", value: token))
     
+        AF.request(Endpoints.fetchPhotos.url, method: .get, headers: headers).responseJSON { (resp) in
+            if let err = resp.error {
+                fatalError("Error in fetching post reponse : \(err.localizedDescription)")
+            }
+            
+            guard let data = resp.data else { return }
+            do {
+                let result = try JSONDecoder().decode(FetchPostsResponse.self, from: data)
+                completion(true, result.data)
+            } catch (let err) {
+                completion(false, [])
+            }
+        }
+    }
     
 }
