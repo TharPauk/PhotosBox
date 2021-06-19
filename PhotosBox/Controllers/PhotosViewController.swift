@@ -20,7 +20,6 @@ class PhotosViewController: GridCollectionView {
     @IBOutlet weak var addButton: UIBarButtonItem!
     
     private var isSelecting = false
-    private var blockOperations = [BlockOperation]()
     private var fetchedResultsController: NSFetchedResultsController<Photo>!
 
     private func selectionChanged() {
@@ -94,7 +93,6 @@ class PhotosViewController: GridCollectionView {
     }
     
     private func deletePhoto(at indexPath: IndexPath) {
-//        print("item : \(indexPath.item)")
         let photoToDelete = fetchedResultsController.object(at: indexPath)
         dataController.viewContext.delete(photoToDelete)
         try? dataController.viewContext.save()
@@ -119,7 +117,6 @@ class PhotosViewController: GridCollectionView {
         }
         tabBarController?.tabBar.isHidden = isSelecting
         addButton.isEnabled = !isSelecting
-        print( isSelecting ? "Done" : "Select")
         selectButton.title = isSelecting ? "Done" : "Select"
     }
     
@@ -182,12 +179,6 @@ class PhotosViewController: GridCollectionView {
         photosSelectionViewController.dataController = self.dataController
     }
     
-    
-    deinit {
-        blockOperations.forEach{ $0.cancel() }
-        blockOperations.removeAll(keepingCapacity: false)
-    }
-    
 }
 
 
@@ -231,15 +222,7 @@ extension PhotosViewController: UICollectionViewDataSource {
 
 
 extension PhotosViewController: NSFetchedResultsControllerDelegate {
-    
-    private func deleteOperation(_ indexPath: IndexPath?) -> BlockOperation {
-        return BlockOperation(block: { [weak self] in
-            if let this = self {
-                this.collectionView!.deleteItems(at: [indexPath!])
-            }
-        })
-    }
-    
+  
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case .insert:
@@ -247,21 +230,9 @@ extension PhotosViewController: NSFetchedResultsControllerDelegate {
             self.collectionView.insertItems(at: [newIndexPath])
         case .delete:
             guard let indexPath = indexPath else { return }
-            blockOperations.append(deleteOperation(indexPath))
+            self.collectionView.deleteItems(at: [indexPath])
         default:
             break
         }
-    }
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        blockOperations.removeAll(keepingCapacity: false)
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        collectionView!.performBatchUpdates({ () -> Void in
-            blockOperations.forEach { $0.start() }
-        }, completion: { (finished) -> Void in
-            self.blockOperations.removeAll(keepingCapacity: false)
-        })
     }
 }
