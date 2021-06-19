@@ -35,6 +35,10 @@ class LoginController: UIViewController {
     }
     
     
+    @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true)
+    }
+    
     private func setLoginButtonState(isLoggingIn: Bool) {
         emailTextField.isEnabled = !isLoggingIn
         passwordTextField.isEnabled = !isLoggingIn

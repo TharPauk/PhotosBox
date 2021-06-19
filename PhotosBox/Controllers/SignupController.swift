@@ -39,6 +39,11 @@ class SignupController: UIViewController {
         ApiService.shared.signup(name: name, email: email, password: password,completion: handleSignUp(success:message:))
     }
     
+    
+    @IBAction func cancelButtonPressed(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true)
+    }
+    
     private func setSignupButtonState(isSigningIn: Bool) {
         nameTextField.isEnabled = !isSigningIn
         emailTextField.isEnabled = !isSigningIn
