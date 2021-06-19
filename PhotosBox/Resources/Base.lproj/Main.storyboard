@@ -455,6 +455,9 @@
                                                 <state key="normal" title="Delete">
                                                     <color key="titleColor" systemColor="systemRedColor"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="deleteButtonPressed:" destination="KJg-za-gQy" eventType="touchUpInside" id="7nR-IJ-pGF"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QnS-9z-Lk1">
                                                 <rect key="frame" x="195" y="0.0" width="195" height="63"/>

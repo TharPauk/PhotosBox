@@ -20,6 +20,7 @@ class PhotosViewController: GridCollectionView {
     @IBOutlet weak var addButton: UIBarButtonItem!
     
     private var isSelecting = false
+    private var blockOperations = [BlockOperation]()
     private var fetchedResultsController: NSFetchedResultsController<Photo>!
 
     private func selectionChanged() {
@@ -92,7 +93,14 @@ class PhotosViewController: GridCollectionView {
         }
     }
     
-    fileprivate func deselectAllItems() {
+    private func deletePhoto(at indexPath: IndexPath) {
+//        print("item : \(indexPath.item)")
+        let photoToDelete = fetchedResultsController.object(at: indexPath)
+        dataController.viewContext.delete(photoToDelete)
+        try? dataController.viewContext.save()
+    }
+    
+    private func deselectAllItems() {
         collectionView.indexPathsForSelectedItems?.forEach{
             collectionView.deselectItem(at: $0, animated: false)
         }
@@ -100,42 +108,35 @@ class PhotosViewController: GridCollectionView {
     }
     
     @IBAction func selectButtonPressed(_ sender: UIBarButtonItem) {
-        isSelecting = !isSelecting
+        setSelectingState()
+    }
+    
+    private func setSelectingState(state: Bool? = nil) {
+        isSelecting = state ?? !isSelecting
+        
         if !isSelecting {
             deselectAllItems()
         }
-        
-       setSelectingState(state: isSelecting)
-    }
-    
-    private func setSelectingState(state: Bool) {
         tabBarController?.tabBar.isHidden = isSelecting
         addButton.isEnabled = !isSelecting
-        uploadButton.isEnabled = isSelecting
-        deleteButton.isEnabled = isSelecting
+        print( isSelecting ? "Done" : "Select")
         selectButton.title = isSelecting ? "Done" : "Select"
     }
     
+    @IBAction func deleteButtonPressed(_ sender: UIButton) {
+        selectedIndexPaths = selectedIndexPaths.sorted(by: >)
+        selectedIndexPaths.forEach { deletePhoto(at: $0) }
+        setSelectingState(state: false)
+        deselectAllItems()
+    }
+    
     @IBAction func uploadButtonPressed(_ sender: UIButton) {
-   
-        guard let _ = fetchedResultsController.fetchedObjects,
-              let selectedIndexPaths = collectionView.indexPathsForSelectedItems,
-              selectedIndexPaths.count > 0
-        else { return }
+        guard selectedIndexPaths.count > 0 else { return }
         
         let images: [Data] = selectedIndexPaths.compactMap { indexPathToPngData($0) }
         progressHud.show(in: self.view)
         
-        ApiService.shared.upload(images: images, progressUpdate: updateProgress(progress:)) { (success, message) in
-            self.progressHud.dismiss(animated: true)
-            self.selectButtonPressed(self.selectButton)
-            self.deselectAllItems()
-            
-            if let tabBarController = self.tabBarController {
-                tabBarController.selectedIndex = tabBarController.viewControllers!.count - 1
-            }
-            
-        }
+        ApiService.shared.upload(images: images, progressUpdate: updateProgress(progress:), completion: handleComplete(success:message:))
     }
     
     private func updateProgress(progress: Progress) {
@@ -143,6 +144,16 @@ class PhotosViewController: GridCollectionView {
         
         progressHud.progress = progressInFloat
         progressHud.detailTextLabel.text = "\(Int(progressInFloat * 100))% complete"
+    }
+    
+    private func handleComplete(success: Bool, message: String?) {
+        progressHud.dismiss(animated: true)
+        selectButtonPressed(self.selectButton)
+        deselectAllItems()
+        
+        if let tabBarController = self.tabBarController {
+            tabBarController.selectedIndex = tabBarController.viewControllers!.count - 1
+        }
     }
     
     private func indexPathToPngData(_ indexPath: IndexPath) -> Data {
@@ -169,6 +180,12 @@ class PhotosViewController: GridCollectionView {
             return
         }
         photosSelectionViewController.dataController = self.dataController
+    }
+    
+    
+    deinit {
+        blockOperations.forEach{ $0.cancel() }
+        blockOperations.removeAll(keepingCapacity: false)
     }
     
 }
@@ -209,19 +226,42 @@ extension PhotosViewController: UICollectionViewDataSource {
         return cell
     }
     
-    
 }
 
 
 
 extension PhotosViewController: NSFetchedResultsControllerDelegate {
+    
+    private func deleteOperation(_ indexPath: IndexPath?) -> BlockOperation {
+        return BlockOperation(block: { [weak self] in
+            if let this = self {
+                this.collectionView!.deleteItems(at: [indexPath!])
+            }
+        })
+    }
+    
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case .insert:
             guard let newIndexPath = newIndexPath else { return }
             self.collectionView.insertItems(at: [newIndexPath])
+        case .delete:
+            guard let indexPath = indexPath else { return }
+            blockOperations.append(deleteOperation(indexPath))
         default:
             break
         }
+    }
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        blockOperations.removeAll(keepingCapacity: false)
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        collectionView!.performBatchUpdates({ () -> Void in
+            blockOperations.forEach { $0.start() }
+        }, completion: { (finished) -> Void in
+            self.blockOperations.removeAll(keepingCapacity: false)
+        })
     }
 }
