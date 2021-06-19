@@ -6,15 +6,36 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class CloudViewController: GridCollectionView {
     
     
     @IBOutlet weak var loginSection: UIView!
+    @IBOutlet weak var selectButton: UIBarButtonItem!
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var downloadButton: UIButton!
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    private var photosInfo = [PhotoInfo]()
     
+    private var photosInfo = [PhotoInfo]()
+    private var isSelecting = false
+    private let progressHud: JGProgressHUD = {
+        let hud = JGProgressHUD()
+        return hud
+    }()
+    private var selectedIndexPaths = [IndexPath]() {
+        didSet {
+            let count = selectedIndexPaths.count
+            navigationItem.title = "\(count) photo(s) selected"
+            [downloadButton, deleteButton].forEach {
+                $0?.alpha = count > 0 ? 1 : 0.5
+                $0?.isEnabled = count > 0
+            }
+            
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,14 +54,22 @@ class CloudViewController: GridCollectionView {
     }
     
     
-    
     private func fetchPhotos() {
+        progressHud.show(in: self.view, animated: false)
+        
         ApiService.shared.getPhotos { (success, photosInfo) in
+            self.progressHud.dismiss(animated: false)
             self.photosInfo = photosInfo
             self.collectionView.reloadData()
         }
     }
     
+    fileprivate func deselectAllItems() {
+        selectedIndexPaths.forEach{
+            collectionView.deselectItem(at: $0, animated: false)
+        }
+        selectedIndexPaths = []
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -48,7 +77,31 @@ class CloudViewController: GridCollectionView {
         loginSection.isHidden = AuthService.shared.isLoggedIn
     }
     
-  
+    @IBAction func selectButtonPressed(_ sender: UIBarButtonItem) {
+        isSelecting = !isSelecting
+        tabBarController?.tabBar.isHidden = isSelecting
+        
+        if !isSelecting {
+            collectionView.indexPathsForSelectedItems?.forEach{
+                collectionView.deselectItem(at: $0, animated: false)
+            }
+        }
+        
+        downloadButton.isEnabled = isSelecting
+        deleteButton.isEnabled = isSelecting
+        selectButton.title = isSelecting ? "Done" : "Select"
+    }
+    
+    
+    @IBAction func deleteButtonPressed(_ sender: UIButton) {
+        
+    }
+    
+    
+    @IBAction func downloadButtonPressed(_ sender: UIButton) {
+        
+    }
+    
 }
 
 

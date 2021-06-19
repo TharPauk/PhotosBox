@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="KHT-cG-yjz" kind="relationship" relationship="rootViewController" id="mYV-LY-5Ep"/>
+                        <segue destination="KHT-cG-yjz" kind="relationship" relationship="rootViewController" id="OAp-zm-nbe"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ebw-57-Zi7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -128,33 +128,82 @@
                                     <constraint firstItem="WjX-7l-Nd6" firstAttribute="centerX" secondItem="hyq-7o-c8f" secondAttribute="centerX" id="dVW-CE-8LE"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQu-ea-yhM">
+                                <rect key="frame" x="0.0" y="761" width="390" height="83"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="6P3-no-hp2">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="63"/>
+                                        <subviews>
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZa-Ll-NvY">
+                                                <rect key="frame" x="0.0" y="0.0" width="195" height="63"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                <state key="normal" title="Delete">
+                                                    <color key="titleColor" systemColor="systemPinkColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="deleteButtonPressed:" destination="KHT-cG-yjz" eventType="touchUpInside" id="MJI-JQ-u7q"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wb-np-P2F">
+                                                <rect key="frame" x="195" y="0.0" width="195" height="63"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                <state key="normal" title="Download">
+                                                    <color key="titleColor" systemColor="systemGreenColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="downloadButtonPressed:" destination="KHT-cG-yjz" eventType="touchUpInside" id="NS9-Tl-iln"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="6P3-no-hp2" firstAttribute="leading" secondItem="nQu-ea-yhM" secondAttribute="leading" id="9FT-bk-QMx"/>
+                                    <constraint firstItem="6P3-no-hp2" firstAttribute="top" secondItem="nQu-ea-yhM" secondAttribute="top" id="EpT-WB-kOs"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="83" id="N3T-H4-WvV"/>
+                                    <constraint firstAttribute="trailing" secondItem="6P3-no-hp2" secondAttribute="trailing" id="UGH-qn-MPF"/>
+                                    <constraint firstAttribute="bottom" secondItem="6P3-no-hp2" secondAttribute="bottom" constant="20" symbolic="YES" id="cIW-cT-4vm"/>
+                                    <constraint firstAttribute="height" constant="83" id="tfy-Bv-VAg"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KGu-UE-avi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="nQu-ea-yhM" secondAttribute="bottom" id="4ZX-vw-AVg"/>
+                            <constraint firstItem="nQu-ea-yhM" firstAttribute="trailing" secondItem="KGu-UE-avi" secondAttribute="trailing" id="63r-Yb-fF2"/>
                             <constraint firstItem="yrP-rz-on5" firstAttribute="trailing" secondItem="KGu-UE-avi" secondAttribute="trailing" id="8c9-do-VyB"/>
-                            <constraint firstItem="hyq-7o-c8f" firstAttribute="bottom" secondItem="KGu-UE-avi" secondAttribute="bottom" id="ITI-NH-zzF"/>
+                            <constraint firstItem="nQu-ea-yhM" firstAttribute="leading" secondItem="KGu-UE-avi" secondAttribute="leading" id="Jp0-xi-zyP"/>
                             <constraint firstItem="hyq-7o-c8f" firstAttribute="top" secondItem="KGu-UE-avi" secondAttribute="top" id="PEF-TC-VPI"/>
                             <constraint firstItem="yrP-rz-on5" firstAttribute="leading" secondItem="KGu-UE-avi" secondAttribute="leading" id="WCG-sI-XZo"/>
+                            <constraint firstItem="nQu-ea-yhM" firstAttribute="top" secondItem="yrP-rz-on5" secondAttribute="bottom" id="bp4-AA-Gno"/>
                             <constraint firstItem="yrP-rz-on5" firstAttribute="top" secondItem="KGu-UE-avi" secondAttribute="top" id="cyW-8b-I6a"/>
                             <constraint firstItem="hyq-7o-c8f" firstAttribute="trailing" secondItem="KGu-UE-avi" secondAttribute="trailing" id="gAa-Fq-bh9"/>
-                            <constraint firstItem="yrP-rz-on5" firstAttribute="bottom" secondItem="KGu-UE-avi" secondAttribute="bottom" id="gu1-B6-htk"/>
+                            <constraint firstItem="nQu-ea-yhM" firstAttribute="top" secondItem="hyq-7o-c8f" secondAttribute="bottom" id="lAp-Dd-0c1"/>
                             <constraint firstItem="hyq-7o-c8f" firstAttribute="leading" secondItem="KGu-UE-avi" secondAttribute="leading" id="ra5-xJ-vhO"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Cloud" image="unselected_cloud_icon" selectedImage="selected_cloud_icon" id="uRP-TB-CgL"/>
                     <navigationItem key="navigationItem" title="Cloud" id="qWf-ut-3wC">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" style="plain" id="Fim-4W-lzo">
+                        <barButtonItem key="leftBarButtonItem" title="Select" style="done" id="KaH-Hx-Sah">
+                            <connections>
+                                <action selector="selectButtonPressed:" destination="KHT-cG-yjz" id="8D3-7V-d0N"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Settings" style="done" id="Fim-4W-lzo">
                             <connections>
                                 <segue destination="axU-On-bZo" kind="showDetail" id="CGF-kg-HXu"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Gdu-gX-pVD"/>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="yrP-rz-on5" id="DaL-oy-t8m"/>
+                        <outlet property="deleteButton" destination="yZa-Ll-NvY" id="XQc-Qu-fnV"/>
+                        <outlet property="downloadButton" destination="6wb-np-P2F" id="dNC-ls-nMR"/>
                         <outlet property="flowLayout" destination="v2U-Lr-GYC" id="Fbv-nk-btU"/>
                         <outlet property="loginSection" destination="hyq-7o-c8f" id="AN1-tb-hex"/>
+                        <outlet property="selectButton" destination="KaH-Hx-Sah" id="5oR-AG-MZS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQ2-8z-7CF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -346,7 +395,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="KJg-za-gQy" kind="relationship" relationship="rootViewController" id="smw-Zk-ybQ"/>
+                        <segue destination="KJg-za-gQy" kind="relationship" relationship="rootViewController" id="IpS-oS-kH9"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NeC-TJ-oPs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -394,41 +443,73 @@
                                     <outlet property="delegate" destination="KJg-za-gQy" id="5Vp-W8-k5d"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8l0-4l-5YN">
+                                <rect key="frame" x="0.0" y="761" width="390" height="83"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ghC-1H-iQy">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="63"/>
+                                        <subviews>
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oao-5k-YhE">
+                                                <rect key="frame" x="0.0" y="0.0" width="195" height="63"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                <state key="normal" title="Delete">
+                                                    <color key="titleColor" systemColor="systemRedColor"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QnS-9z-Lk1">
+                                                <rect key="frame" x="195" y="0.0" width="195" height="63"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                <state key="normal" title="Upload">
+                                                    <color key="titleColor" systemColor="systemGreenColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="uploadButtonPressed:" destination="KJg-za-gQy" eventType="touchUpInside" id="o0E-OV-yiA"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="ghC-1H-iQy" secondAttribute="bottom" constant="20" symbolic="YES" id="7Bj-lV-WZn"/>
+                                    <constraint firstAttribute="trailing" secondItem="ghC-1H-iQy" secondAttribute="trailing" id="T3q-F9-jYQ"/>
+                                    <constraint firstAttribute="height" constant="83" id="X4o-UG-hUz"/>
+                                    <constraint firstItem="ghC-1H-iQy" firstAttribute="top" secondItem="8l0-4l-5YN" secondAttribute="top" id="cob-MK-meO"/>
+                                    <constraint firstItem="ghC-1H-iQy" firstAttribute="leading" secondItem="8l0-4l-5YN" secondAttribute="leading" id="h0R-Ge-03y"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jB2-Iw-t90"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="dTk-0N-BLn" firstAttribute="trailing" secondItem="jB2-Iw-t90" secondAttribute="trailing" id="2Mj-B0-ZcN"/>
                             <constraint firstItem="dTk-0N-BLn" firstAttribute="leading" secondItem="jB2-Iw-t90" secondAttribute="leading" id="2Sv-WN-9bh"/>
-                            <constraint firstItem="dTk-0N-BLn" firstAttribute="bottom" secondItem="jB2-Iw-t90" secondAttribute="bottom" id="Oxf-KA-neC"/>
+                            <constraint firstItem="8l0-4l-5YN" firstAttribute="leading" secondItem="jB2-Iw-t90" secondAttribute="leading" id="S7K-cN-Zsq"/>
+                            <constraint firstItem="8l0-4l-5YN" firstAttribute="trailing" secondItem="jB2-Iw-t90" secondAttribute="trailing" id="UWm-B5-ROF"/>
+                            <constraint firstAttribute="bottom" secondItem="8l0-4l-5YN" secondAttribute="bottom" id="ZFL-Fu-DUt"/>
                             <constraint firstItem="dTk-0N-BLn" firstAttribute="top" secondItem="3rQ-DW-76h" secondAttribute="top" id="v0n-07-ZjZ"/>
+                            <constraint firstItem="8l0-4l-5YN" firstAttribute="top" secondItem="dTk-0N-BLn" secondAttribute="bottom" id="xGy-Gr-5ai"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Photos" id="x2z-Lt-Uhz">
-                        <barButtonItem key="leftBarButtonItem" title="Select" id="FlH-wO-ShT">
+                        <barButtonItem key="leftBarButtonItem" title="Select" style="done" id="FlH-wO-ShT">
                             <connections>
                                 <action selector="selectButtonPressed:" destination="KJg-za-gQy" id="6ES-uN-giw"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="5FL-dy-Wvc">
-                                <connections>
-                                    <segue destination="Fwg-O8-2S1" kind="show" identifier="SelectPhotos" id="09R-wz-4hV"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="action" id="2d2-vX-At0">
-                                <color key="tintColor" systemColor="systemBlueColor"/>
-                                <connections>
-                                    <action selector="uploadButtonPressed:" destination="KJg-za-gQy" id="LPR-mQ-kuv"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="5FL-dy-Wvc">
+                            <connections>
+                                <segue destination="Fwg-O8-2S1" kind="show" identifier="SelectPhotos" id="09R-wz-4hV"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="5FL-dy-Wvc" id="H3u-tm-sdH"/>
                         <outlet property="collectionView" destination="dTk-0N-BLn" id="0dV-ut-cAl"/>
+                        <outlet property="deleteButton" destination="Oao-5k-YhE" id="461-ze-CEU"/>
                         <outlet property="flowLayout" destination="i4t-dN-rZX" id="rSv-me-Vd0"/>
-                        <outlet property="uploadButton" destination="2d2-vX-At0" id="ibn-LE-rBc"/>
+                        <outlet property="selectButton" destination="FlH-wO-ShT" id="rcL-LC-uZT"/>
+                        <outlet property="uploadButton" destination="QnS-9z-Lk1" id="iK6-ev-YMD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ItA-J9-6sh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1312,6 +1393,12 @@
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

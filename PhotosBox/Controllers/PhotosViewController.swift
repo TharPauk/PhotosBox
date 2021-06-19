@@ -12,21 +12,46 @@ import JGProgressHUD
 
 class PhotosViewController: GridCollectionView {
     
-    private var isSelecting = false
-    private var fetchedResultsController: NSFetchedResultsController<Photo>!
-    var dataController: DataController!
-   
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    @IBOutlet weak var uploadButton: UIBarButtonItem!
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var uploadButton: UIButton!
+    @IBOutlet weak var selectButton: UIBarButtonItem!
     @IBOutlet weak var addButton: UIBarButtonItem!
     
+    private var isSelecting = false
+    private var fetchedResultsController: NSFetchedResultsController<Photo>!
+
+    private func selectionChanged() {
+        let count = selectedIndexPaths.count
+        let hasValue = count > 0
+        
+        var title = "Photos"
+        switch count {
+        case 0: title = "Photos"
+        case 1: title = "1 photo selected"
+        default: title = "\(count) photos selected"
+        }
+        navigationItem.title = title
+        
+        [uploadButton, deleteButton].forEach {
+            $0?.alpha = hasValue ? 1 : 0.5
+            $0?.isEnabled = hasValue
+        }
+    }
+    
+    var selectedIndexPaths = [IndexPath]() {
+        didSet {
+            selectionChanged()
+        }
+    }
+    
+    var dataController: DataController!
     private let progressHud: JGProgressHUD = {
         let hud = JGProgressHUD()
         hud.indicatorView = JGProgressHUDRingIndicatorView()
         hud.textLabel.text = "Uploading"
         hud.progress = 0
-        hud.dismiss(afterDelay: 0.0)
         return hud
     }()
     
@@ -39,7 +64,8 @@ class PhotosViewController: GridCollectionView {
   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        uploadButton.isEnabled = false
+        navigationItem.title = "Photos"
+        setSelectingState(state: false)
     }
     
     private func showPasscodeScreen() {
@@ -66,19 +92,32 @@ class PhotosViewController: GridCollectionView {
         }
     }
     
+    fileprivate func deselectAllItems() {
+        collectionView.indexPathsForSelectedItems?.forEach{
+            collectionView.deselectItem(at: $0, animated: false)
+        }
+        selectedIndexPaths = []
+    }
+    
     @IBAction func selectButtonPressed(_ sender: UIBarButtonItem) {
         isSelecting = !isSelecting
         if !isSelecting {
-            collectionView.indexPathsForSelectedItems?.forEach{
-                collectionView.deselectItem(at: $0, animated: false)
-            }
+            deselectAllItems()
         }
         
-        uploadButton.isEnabled = isSelecting
-        sender.title = isSelecting ? "Done" : "Select"
+       setSelectingState(state: isSelecting)
     }
     
-    @IBAction func uploadButtonPressed(_ sender: UIBarButtonItem) {
+    private func setSelectingState(state: Bool) {
+        tabBarController?.tabBar.isHidden = isSelecting
+        addButton.isEnabled = !isSelecting
+        uploadButton.isEnabled = isSelecting
+        deleteButton.isEnabled = isSelecting
+        selectButton.title = isSelecting ? "Done" : "Select"
+    }
+    
+    @IBAction func uploadButtonPressed(_ sender: UIButton) {
+   
         guard let _ = fetchedResultsController.fetchedObjects,
               let selectedIndexPaths = collectionView.indexPathsForSelectedItems,
               selectedIndexPaths.count > 0
@@ -89,9 +128,13 @@ class PhotosViewController: GridCollectionView {
         
         ApiService.shared.upload(images: images, progressUpdate: updateProgress(progress:)) { (success, message) in
             self.progressHud.dismiss(animated: true)
-            self.collectionView.indexPathsForSelectedItems?.forEach{
-                self.collectionView.deselectItem(at: $0, animated: false)
+            self.selectButtonPressed(self.selectButton)
+            self.deselectAllItems()
+            
+            if let tabBarController = self.tabBarController {
+                tabBarController.selectedIndex = tabBarController.viewControllers!.count - 1
             }
+            
         }
     }
     
@@ -133,21 +176,23 @@ class PhotosViewController: GridCollectionView {
 
 extension PhotosViewController: UICollectionViewDataSource {
     
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        selectedIndexPaths.removeLast()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if !isSelecting {
-            collectionView.deselectItem(at: indexPath, animated: false)
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let photoDetailController = storyboard.instantiateViewController(identifier: "PhotoDetailController") as! PhotoDetailController
-            if let image = fetchedResultsController.fetchedObjects?[indexPath.item] {
-                photoDetailController.image = UIImage(data: image.data!)
-            }
-           
-            navigationController?.pushViewController(photoDetailController, animated: true)
+        isSelecting ? selectedIndexPaths.append(indexPath): goToPhotoDetail(indexPath: indexPath)
+    }
+    
+    private func goToPhotoDetail(indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: false)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let photoDetailController = storyboard.instantiateViewController(identifier: "PhotoDetailController") as! PhotoDetailController
+        if let image = fetchedResultsController.fetchedObjects?[indexPath.item] {
+            photoDetailController.image = UIImage(data: image.data!)
         }
         
-        let imageName =  isSelecting ? "trash" : "add"
-        addButton.setBackgroundImage(UIImage(systemName: imageName), for: .normal, style: .plain, barMetrics: .default)
-      
+        navigationController?.pushViewController(photoDetailController, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
