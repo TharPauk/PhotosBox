@@ -16,10 +16,11 @@ class CloudViewController: GridCollectionView {
     @IBOutlet weak var settingsButton: UIBarButtonItem!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var downloadButton: UIButton!
-    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
+    
+    var dataController: DataController!
     private var photosInfo = [PhotoInfo]()
     private var isSelecting = false
     private let progressHud = JGProgressHUD()
@@ -107,17 +108,35 @@ class CloudViewController: GridCollectionView {
     @IBAction func deleteButtonPressed(_ sender: UIButton) {
         let photosIds = selectedIndexPaths.compactMap{ photosInfo[$0.item]._id }
         progressHud.show(in: self.view, animated: false)
-        ApiService.shared.deletePhotos(photosIds: photosIds) { (success, deletedPhotos) in
-            self.progressHud.dismiss(animated: false)
-            success ? self.fetchPhotos() : self.popupMessage(title: "No Internet Connection", message: "You need to connect to the internet to continue.")
-            
-            self.setSelectingState(state: false)
-            self.deselectAllItems()
-        }
+    
+        ApiService.shared.deletePhotos(photosIds: photosIds, completion: handleDeletePhotos(success:photosInfo:))
+    }
+    
+    private func handleDeletePhotos(success: Bool, photosInfo: [PhotoInfo]) {
+        progressHud.dismiss(animated: false)
+        success ? self.fetchPhotos() : self.popupMessage(title: "No Internet Connection", message: "You need to connect to the internet to continue.")
+        
+        setSelectingState(state: false)
+        deselectAllItems()
     }
     
     @IBAction func downloadButtonPressed(_ sender: UIButton) {
+        selectedIndexPaths.forEach { saveToStore(indexPath: $0) }
+    }
+    
+    private func saveToStore(indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? PhotoCell,
+              let image = cell.imageView.image else { return }
         
+        progressHud.show(in: self.view)
+        let photo = Photo(context: self.dataController.viewContext)
+        photo.data = image.pngData()
+        dataController.saveContext()
+        
+        progressHud.dismiss()
+        setSelectingState(state: false)
+        deselectAllItems()
+        tabBarController?.selectedIndex = 0
     }
     
     

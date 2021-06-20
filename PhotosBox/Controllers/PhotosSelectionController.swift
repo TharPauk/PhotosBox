@@ -11,19 +11,22 @@ import JGProgressHUD
 
 class PhotosSelectionController: GridCollectionView {
     
-    private var assets = PHFetchResult<PHAsset>()
+   
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
+    var dataController: DataController!
     private var isSelecting = false
+    private let progressHud = JGProgressHUD()
+    private var assets = PHFetchResult<PHAsset>()
     private var selectedIndexPaths = [IndexPath]() {
         didSet {
             addButton.isEnabled = selectedIndexPaths.count > 0
         }
     }
-    var dataController: DataController!
-    private let progressHud = JGProgressHUD()
     
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    @IBOutlet weak var addButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,7 +94,6 @@ class PhotosSelectionController: GridCollectionView {
     private func requestPhoto(at indexPath: IndexPath) {
         
         let asset = assets[indexPath.item]
-        let size = CGSize(width: cellWidth, height: cellWidth)
         let resultHandler: (UIImage?, [AnyHashable: Any]?) -> Void = { image, _ in
             if let image = image {
                 let photo = Photo(context: self.dataController.viewContext)

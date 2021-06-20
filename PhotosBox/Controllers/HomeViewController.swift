@@ -13,9 +13,13 @@ class HomeViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let navController = self.viewControllers?.first as! UINavigationController
-        let photosViewController = navController.viewControllers.first as! PhotosViewController
+        let photosViewNavController = self.viewControllers?.first as! UINavigationController
+        let photosViewController = photosViewNavController.viewControllers.first as! PhotosViewController
         photosViewController.dataController = self.dataController
+        
+        let cloudViewNavController = self.viewControllers?.last as! UINavigationController
+        let cloudViewController = cloudViewNavController.viewControllers.first as! CloudViewController
+        cloudViewController.dataController = self.dataController
     }
     
     
