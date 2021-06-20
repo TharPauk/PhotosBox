@@ -10,6 +10,7 @@ import JGProgressHUD
 
 class CloudViewController: GridCollectionView {
     
+    // MARK: - IBOutlets
     
     @IBOutlet weak var loginSection: UIView!
     @IBOutlet weak var selectButton: UIBarButtonItem!
@@ -20,21 +21,54 @@ class CloudViewController: GridCollectionView {
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     
+    
+    // MARK: - Properties
+    
     var dataController: DataController!
     private var photosInfo = [PhotoInfo]()
     private var isSelecting = false
     private let progressHud = JGProgressHUD()
-    
     var selectedIndexPaths = [IndexPath]() {
         didSet {
             selectionChanged()
         }
     }
     
+    
+    
+    // MARK: - LifeCycle Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchPhotos()
+        loginSection.isHidden = AuthService.shared.isLoggedIn
+    }
+    
+    
+    
+    // MARK: - IBActions
+    
+    @IBAction func selectButtonPressed(_ sender: UIBarButtonItem) {
+       setSelectingState()
+    }
+    
+    @IBAction func deleteButtonPressed(_ sender: UIButton) {
+        let photosIds = selectedIndexPaths.compactMap{ photosInfo[$0.item]._id }
+        progressHud.show(in: self.view, animated: false)
+    
+        ApiService.shared.deletePhotos(photosIds: photosIds, completion: handleDeletePhotos(success:photosInfo:))
+    }
+    
+    @IBAction func downloadButtonPressed(_ sender: UIButton) {
+        selectedIndexPaths.forEach { saveToStore(indexPath: $0) }
+    }
+    
+    // MARK: - Initialization Functions
     
     private func setupCollectionView() {
         collectionView.delegate = self
@@ -47,6 +81,40 @@ class CloudViewController: GridCollectionView {
         flowLayout.minimumInteritemSpacing = 2.0
     }
     
+    
+    
+    // MARK: - Networking Functions
+    
+    private func fetchPhotos() {
+        guard AuthService.shared.isLoggedIn else { return }
+        progressHud.textLabel.text = ""
+        progressHud.show(in: self.view, animated: false)
+        
+        ApiService.shared.getPhotos(completion: handleGetPhotosRequest(success:photosInfo:))
+    }
+    
+    private func handleGetPhotosRequest(success: Bool, photosInfo: [PhotoInfo]) {
+        progressHud.dismiss(animated: false)
+        
+        guard success else {
+            popupMessage(title: "No Internet Connection", message: "You need to connect to the internet to continue.")
+            return
+        }
+        self.photosInfo = photosInfo
+        self.collectionView.reloadData()
+    }
+    
+    private func handleDeletePhotos(success: Bool, photosInfo: [PhotoInfo]) {
+        progressHud.dismiss(animated: false)
+        success ? self.fetchPhotos() : self.popupMessage(title: "No Internet Connection", message: "You need to connect to the internet to continue.")
+        
+        setSelectingState(state: false)
+        deselectAllItems()
+    }
+    
+    
+    
+    // MARK: - Cell Selection Functions
     
     private func selectionChanged() {
         let count = selectedIndexPaths.count
@@ -66,63 +134,27 @@ class CloudViewController: GridCollectionView {
         }
     }
     
-    
-    
-    private func fetchPhotos() {
-        guard AuthService.shared.isLoggedIn else { return }
-        progressHud.textLabel.text = ""
-        progressHud.show(in: self.view, animated: false)
-        
-        ApiService.shared.getPhotos(completion: handleGetPhotosRequest(success:photosInfo:))
-    }
-    
-    private func handleGetPhotosRequest(success: Bool, photosInfo: [PhotoInfo]) {
-        progressHud.dismiss(animated: false)
-        
-        guard success else {
-            popupMessage(title: "No Internet Connection", message: "You need to connect to the internet to continue.")
-            return 
-        }
-        self.photosInfo = photosInfo
-        self.collectionView.reloadData()
-    }
-    
-    fileprivate func deselectAllItems() {
+    private func deselectAllItems() {
         selectedIndexPaths.forEach{
             collectionView.deselectItem(at: $0, animated: false)
         }
         selectedIndexPaths = []
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        fetchPhotos()
-        loginSection.isHidden = AuthService.shared.isLoggedIn
-    }
-    
-    @IBAction func selectButtonPressed(_ sender: UIBarButtonItem) {
-       setSelectingState()
-    }
-    
-    
-    @IBAction func deleteButtonPressed(_ sender: UIButton) {
-        let photosIds = selectedIndexPaths.compactMap{ photosInfo[$0.item]._id }
-        progressHud.show(in: self.view, animated: false)
-    
-        ApiService.shared.deletePhotos(photosIds: photosIds, completion: handleDeletePhotos(success:photosInfo:))
-    }
-    
-    private func handleDeletePhotos(success: Bool, photosInfo: [PhotoInfo]) {
-        progressHud.dismiss(animated: false)
-        success ? self.fetchPhotos() : self.popupMessage(title: "No Internet Connection", message: "You need to connect to the internet to continue.")
+    private func setSelectingState(state: Bool? = nil) {
+        isSelecting = state ?? !isSelecting
         
-        setSelectingState(state: false)
-        deselectAllItems()
+        if !isSelecting {
+            deselectAllItems()
+        }
+        tabBarController?.tabBar.isHidden = isSelecting
+        settingsButton.isEnabled = !isSelecting
+        selectButton.title = isSelecting ? "Done" : "Select"
     }
+   
     
-    @IBAction func downloadButtonPressed(_ sender: UIButton) {
-        selectedIndexPaths.forEach { saveToStore(indexPath: $0) }
-    }
+    
+    // MARK: - CoreData Functions
     
     private func saveToStore(indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? PhotoCell,
@@ -138,23 +170,12 @@ class CloudViewController: GridCollectionView {
         deselectAllItems()
         tabBarController?.selectedIndex = 0
     }
-    
-    
-    private func setSelectingState(state: Bool? = nil) {
-        isSelecting = state ?? !isSelecting
-        
-        if !isSelecting {
-            deselectAllItems()
-        }
-        tabBarController?.tabBar.isHidden = isSelecting
-        settingsButton.isEnabled = !isSelecting
-        selectButton.title = isSelecting ? "Done" : "Select"
-    }
-    
+   
 }
 
 
 
+// MARK: - UICollectionViewDataSource
 
 extension CloudViewController: UICollectionViewDataSource {
     

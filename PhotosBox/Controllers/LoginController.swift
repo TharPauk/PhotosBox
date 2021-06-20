@@ -8,16 +8,26 @@
 import UIKit
 
 class LoginController: UIViewController {
-
+    
+    
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var errorMessageTextView: UITextView!
     @IBOutlet weak var loginButton: RoundedButton!
     
+    
+    
+    // MARK: - LifeCycle Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    
+    
+    // MARK: - IBActions
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         
@@ -39,6 +49,9 @@ class LoginController: UIViewController {
         self.dismiss(animated: true)
     }
     
+    
+    // MARK: - Login State Functions
+    
     private func setLoginButtonState(isLoggingIn: Bool) {
         emailTextField.isEnabled = !isLoggingIn
         passwordTextField.isEnabled = !isLoggingIn
@@ -55,6 +68,15 @@ class LoginController: UIViewController {
         setLoginButtonState(isLoggingIn: false)
     }
     
+    private func showError(with message: String) {
+        errorMessageTextView.text = message
+        errorMessageTextView.isHidden = false
+    }
+    
+    
+    
+    // MARK: - Alert Functions
+    
     private func alertSuccess() {
         let alertController = UIAlertController(title: nil, message: "Login Success", preferredStyle: .alert)
         let viewController = self
@@ -65,9 +87,5 @@ class LoginController: UIViewController {
         present(alertController, animated: true)
     }
     
-    private func showError(with message: String) {
-        errorMessageTextView.text = message
-        errorMessageTextView.isHidden = false
-    }
     
 }

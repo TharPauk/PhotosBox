@@ -13,13 +13,23 @@ enum ScreenType {
 
 class PasscodeController: UIViewController {
     
+    
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var errorMessage: UITextView!
     @IBOutlet weak var textField: UITextField!
     
+    
+    
+    // MARK: - Properties
+    
     var screenType: ScreenType!
     private var enteredPin = ""
     
+    
+    
+    // MARK: - LifeCycle Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +40,10 @@ class PasscodeController: UIViewController {
         setupCaption()
     }
     
+    
+    
+    // MARK: - IBActions
+    
     @IBAction func pressedPasscode(_ sender: UIButton) {
         guard let pin = sender.title(for: .normal) else { return }
         
@@ -39,8 +53,13 @@ class PasscodeController: UIViewController {
         default:
             enteredPin += pin
         }
-        action()
+        performAction()
     }
+    
+    
+    
+    
+    // MARK: - Helper Functions
     
     private func setupCaption() {
         switch screenType {
@@ -55,7 +74,7 @@ class PasscodeController: UIViewController {
         }
     }
     
-    private func action() {
+    private func performAction() {
         switch screenType {
         case .setup:
             if enteredPin.count >= 6 {

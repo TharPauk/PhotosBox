@@ -12,6 +12,9 @@ import JGProgressHUD
 
 class PhotosViewController: GridCollectionView {
     
+    
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var deleteButton: UIButton!
@@ -19,6 +22,11 @@ class PhotosViewController: GridCollectionView {
     @IBOutlet weak var selectButton: UIBarButtonItem!
     @IBOutlet weak var addButton: UIBarButtonItem!
     
+    
+    
+    // MARK: - Properties
+    
+    var dataController: DataController!
     private var isSelecting = false
     private var fetchedResultsController: NSFetchedResultsController<Photo>!
 
@@ -46,7 +54,6 @@ class PhotosViewController: GridCollectionView {
         }
     }
     
-    var dataController: DataController!
     private let progressHud: JGProgressHUD = {
         let hud = JGProgressHUD()
         hud.indicatorView = JGProgressHUDRingIndicatorView()
@@ -54,6 +61,11 @@ class PhotosViewController: GridCollectionView {
         hud.progress = 0
         return hud
     }()
+    
+    
+    
+    
+    // MARK: - LifeCycle Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,56 +80,12 @@ class PhotosViewController: GridCollectionView {
         setSelectingState(state: false)
     }
     
-    private func showPasscodeScreen() {
-        guard PasscodeService.shared.isPasscodeOn else { return }
-        
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let passcodeController = storyBoard.instantiateViewController(identifier: "PasscodeController") as! PasscodeController
-        passcodeController.screenType = .unlock
-        present(passcodeController, animated: false)
-    }
     
-    private func setupFetchedResultsController() {
-        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: "photos")
-        fetchedResultsController.delegate = self
-        
-        do {
-            try fetchedResultsController.performFetch()
-            self.collectionView.reloadData()
-        } catch {
-            print("Errror in loading photos : \(error.localizedDescription)")
-        }
-    }
     
-    private func deletePhoto(at indexPath: IndexPath) {
-        let photoToDelete = fetchedResultsController.object(at: indexPath)
-        dataController.viewContext.delete(photoToDelete)
-        try? dataController.viewContext.save()
-    }
-    
-    private func deselectAllItems() {
-        collectionView.indexPathsForSelectedItems?.forEach{
-            collectionView.deselectItem(at: $0, animated: false)
-        }
-        selectedIndexPaths = []
-    }
+    // MARK: - IBActions
     
     @IBAction func selectButtonPressed(_ sender: UIBarButtonItem) {
         setSelectingState()
-    }
-    
-    private func setSelectingState(state: Bool? = nil) {
-        isSelecting = state ?? !isSelecting
-        
-        if !isSelecting {
-            deselectAllItems()
-        }
-        tabBarController?.tabBar.isHidden = isSelecting
-        addButton.isEnabled = !isSelecting
-        selectButton.title = isSelecting ? "Done" : "Select"
     }
     
     @IBAction func deleteButtonPressed(_ sender: UIButton) {
@@ -140,6 +108,25 @@ class PhotosViewController: GridCollectionView {
         ApiService.shared.upload(images: images, progressUpdate: updateProgress(progress:), completion: handleComplete(success:message:))
     }
     
+    
+    
+    // MARK: - Initialization Functions
+    
+    private func setupCollectionView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.allowsSelection = true
+        collectionView.allowsMultipleSelection = true
+        
+        flowLayout.minimumLineSpacing = 4.0
+        flowLayout.minimumInteritemSpacing = 2.0
+    }
+    
+    
+    
+    // MARK: - Networking Functions
+    
     private func updateProgress(progress: Progress) {
         let progressInFloat = Float(progress.fractionCompleted)
         
@@ -157,22 +144,50 @@ class PhotosViewController: GridCollectionView {
         }
     }
     
+   
+    
+    
+    // MARK: - Passcode
+    
+    private func showPasscodeScreen() {
+        guard PasscodeService.shared.isPasscodeOn else { return }
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let passcodeController = storyBoard.instantiateViewController(identifier: "PasscodeController") as! PasscodeController
+        passcodeController.screenType = .unlock
+        present(passcodeController, animated: false)
+    }
+    
+    
+    
+    // MARK: - Cell Selection Functions
+    
+    private func setSelectingState(state: Bool? = nil) {
+        isSelecting = state ?? !isSelecting
+        
+        if !isSelecting {
+            deselectAllItems()
+        }
+        tabBarController?.tabBar.isHidden = isSelecting
+        addButton.isEnabled = !isSelecting
+        selectButton.title = isSelecting ? "Done" : "Select"
+    }
+    
+    private func deselectAllItems() {
+        collectionView.indexPathsForSelectedItems?.forEach{
+            collectionView.deselectItem(at: $0, animated: false)
+        }
+        selectedIndexPaths = []
+    }
+    
     private func indexPathToPngData(_ indexPath: IndexPath) -> Data {
         let data = fetchedResultsController.fetchedObjects![indexPath.item].data
         return (UIImage(data: data!)?.pngData())!
     }
     
     
-    private func setupCollectionView() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
-        collectionView.allowsSelection = true
-        collectionView.allowsMultipleSelection = true
-        
-        flowLayout.minimumLineSpacing = 4.0
-        flowLayout.minimumInteritemSpacing = 2.0
-    }
+    
+    // MARK: - Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "SelectPhotos",
@@ -181,19 +196,6 @@ class PhotosViewController: GridCollectionView {
             return
         }
         photosSelectionViewController.dataController = self.dataController
-    }
-    
-}
-
-
-extension PhotosViewController: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        selectedIndexPaths.removeLast()
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        isSelecting ? selectedIndexPaths.append(indexPath): goToPhotoDetail(indexPath: indexPath)
     }
     
     private func goToPhotoDetail(indexPath: IndexPath) {
@@ -206,6 +208,23 @@ extension PhotosViewController: UICollectionViewDataSource {
         
         navigationController?.pushViewController(photoDetailController, animated: true)
     }
+}
+
+
+
+
+// MARK: - UICollectionViewDataSource
+
+extension PhotosViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        selectedIndexPaths.removeLast()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        isSelecting ? selectedIndexPaths.append(indexPath): goToPhotoDetail(indexPath: indexPath)
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         fetchedResultsController.fetchedObjects?.count ?? 0
@@ -217,7 +236,6 @@ extension PhotosViewController: UICollectionViewDataSource {
            let photoData = fetchedObjects[indexPath.item].data {
             cell.imageView.image = UIImage(data: photoData)
         }
-        
         return cell
     }
     
@@ -225,8 +243,31 @@ extension PhotosViewController: UICollectionViewDataSource {
 
 
 
+// MARK: - FetchResultsController Functions
+
 extension PhotosViewController: NSFetchedResultsControllerDelegate {
-  
+    
+    private func setupFetchedResultsController() {
+        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: "photos")
+        fetchedResultsController.delegate = self
+        
+        do {
+            try fetchedResultsController.performFetch()
+            self.collectionView.reloadData()
+        } catch {
+            print("Errror in loading photos : \(error.localizedDescription)")
+        }
+    }
+    
+    private func deletePhoto(at indexPath: IndexPath) {
+        let photoToDelete = fetchedResultsController.object(at: indexPath)
+        dataController.viewContext.delete(photoToDelete)
+        try? dataController.viewContext.save()
+    }
+    
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case .insert:

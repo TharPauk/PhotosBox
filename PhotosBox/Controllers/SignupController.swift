@@ -9,6 +9,8 @@ import UIKit
 
 class SignupController: UIViewController {
     
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -16,10 +18,16 @@ class SignupController: UIViewController {
     @IBOutlet weak var signupButton: RoundedButton!
     
     
+    
+    // MARK: - LifeCycle Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    
+    
+    // MARK: - IBActions
     
     @IBAction func signupButtonPressed(_ sender: UIButton) {
         setSignupButtonState(isSigningIn: true)
@@ -44,6 +52,11 @@ class SignupController: UIViewController {
         self.dismiss(animated: true)
     }
     
+    
+    
+    
+    // MARK: - SignUp State Functions
+    
     private func setSignupButtonState(isSigningIn: Bool) {
         nameTextField.isEnabled = !isSigningIn
         emailTextField.isEnabled = !isSigningIn
@@ -60,6 +73,14 @@ class SignupController: UIViewController {
         self.setSignupButtonState(isSigningIn: false)
     }
     
+    private func showError(with message: String) {
+        errorMessageTextView.text = message
+        errorMessageTextView.isHidden = false
+    }
+    
+    
+    
+    // MARK: - Alert Functions
     
     private func alertSuccess() {
         let alertController = UIAlertController(title: nil, message: "Sign Up Success", preferredStyle: .alert)
@@ -70,10 +91,5 @@ class SignupController: UIViewController {
         alertController.addAction(okAction)
         
         present(alertController, animated: true)
-    }
-    
-    private func showError(with message: String) {
-        errorMessageTextView.text = message
-        errorMessageTextView.isHidden = false
     }
 }

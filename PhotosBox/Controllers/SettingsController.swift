@@ -9,8 +9,15 @@ import UIKit
 
 class SettingsController: UIViewController {
     
+    
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var passcodeSwitch: UISwitch!
     @IBOutlet weak var logoutButton: RoundedButton!
+    
+    
+    
+    // MARK: - LifeCycle Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +28,10 @@ class SettingsController: UIViewController {
         passcodeSwitch.isOn = PasscodeService.shared.isPasscodeOn
         logoutButton.isHidden = !AuthService.shared.isLoggedIn
     }
+    
+    
+    
+    // MARK: - IBActions
     
     @IBAction func doneButtonPressed(_ sender: Any) {
         dismiss(animated: true)
@@ -39,6 +50,9 @@ class SettingsController: UIViewController {
         self.dismiss(animated: true)
     }
     
+    
+    
+    // MARK: - Passcode
     
     private func showPasscodeScreen(with title: String) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
