@@ -56,13 +56,14 @@ class CloudViewController: GridCollectionView {
     
     private func fetchPhotos() {
         guard AuthService.shared.isLoggedIn else { return }
+        progressHud.textLabel.text = ""
         progressHud.show(in: self.view, animated: false)
         
         ApiService.shared.getPhotos(completion: handleGetPhotosRequest(success:photosInfo:))
     }
     
     private func handleGetPhotosRequest(success: Bool, photosInfo: [PhotoInfo]) {
-        self.progressHud.dismiss(animated: false)
+        progressHud.dismiss(animated: false)
         
         guard success else {
             popupMessage(title: "No Internet Connection", message: "You need to connect to the internet to continue.")
@@ -102,9 +103,13 @@ class CloudViewController: GridCollectionView {
     
     
     @IBAction func deleteButtonPressed(_ sender: UIButton) {
-        
+        let photosIds = selectedIndexPaths.compactMap{ photosInfo[$0.item]._id }
+        progressHud.show(in: self.view, animated: false)
+        ApiService.shared.deletePhotos(photosIds: photosIds) { (success, deletedPhotos) in
+            self.progressHud.dismiss(animated: false)
+            success ? self.fetchPhotos() : self.popupMessage(title: "No Internet Connection", message: "You need to connect to the internet to continue.")
+        }
     }
-    
     
     @IBAction func downloadButtonPressed(_ sender: UIButton) {
         
@@ -118,6 +123,11 @@ class CloudViewController: GridCollectionView {
 extension CloudViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndexPaths.append(indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        selectedIndexPaths.removeLast()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

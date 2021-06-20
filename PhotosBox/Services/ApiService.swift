@@ -22,7 +22,7 @@ class ApiService {
             case .login: return "\(Endpoints.baseUrl)/users/login"
             case .upload: return "\(Endpoints.baseUrl)/posts/"
             case .fetchPhotos: return "\(Endpoints.baseUrl)/posts/"
-            case .deletePhotos: return "\(Endpoints.baseUrl)/posts/"
+            case .deletePhotos: return "\(Endpoints.baseUrl)/posts/remove"
             }
         }
         
@@ -118,22 +118,23 @@ class ApiService {
     
     
     
-    func deletePhotos(completion: @escaping (Bool, [PhotoInfo]) -> Void) {
+    func deletePhotos(photosIds: [String], completion: @escaping (Bool, [PhotoInfo]) -> Void) {
         guard let token = AuthService.shared.token else { return }
         
-        let headers = HTTPHeaders(arrayLiteral: HTTPHeader(name: "Content-Type", value: "application/json"), HTTPHeader(name: "Authorization", value: token))
-    
-        AF.request(Endpoints.deletePhotos.url, method: .delete, headers: headers).responseJSON { (resp) in
+        let body = ["photos": photosIds]
+        let headers = HTTPHeaders(arrayLiteral: HTTPHeader(name: "Content-Type", value: "application/x-www-form-urlencoded"), HTTPHeader(name: "Authorization", value: token))
+        AF.request(Endpoints.deletePhotos.url, method: .post, parameters: body, headers: headers).responseJSON { (resp) in
             if let err = resp.error {
-                print("Error in fetching post reponse : \(err.localizedDescription)")
+                print("Error in deleting post reponse : \(err.localizedDescription)")
                 completion(false, [])
             }
             
             guard let data = resp.data else { return }
             do {
-                let result = try JSONDecoder().decode(FetchPhotosResponse.self, from: data)
+                let result = try JSONDecoder().decode(DeletePhotosResponse.self, from: data)
                 completion(true, result.data)
             } catch {
+                print("Decoding error")
                 completion(false, [])
             }
         }

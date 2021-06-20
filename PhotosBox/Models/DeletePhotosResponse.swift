@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DeletePostsResponse: Codable {
+struct DeletePhotosResponse: Codable {
     let status: Int
     let data: [PhotoInfo]
     let message: String?
