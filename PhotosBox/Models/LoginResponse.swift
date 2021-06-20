@@ -13,10 +13,3 @@ struct LoginResponse: Codable {
     let message: String?
 }
 
-struct User: Codable {
-    let _id: String
-    let name: String?
-    let email: String
-    let token: String?
-}
-
