@@ -7,6 +7,7 @@
 
 import UIKit
 import Photos
+import JGProgressHUD
 
 class PhotosSelectionController: GridCollectionView {
     
@@ -18,6 +19,7 @@ class PhotosSelectionController: GridCollectionView {
         }
     }
     var dataController: DataController!
+    private let progressHud = JGProgressHUD()
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!

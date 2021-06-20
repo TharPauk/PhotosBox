@@ -13,6 +13,7 @@ class CloudViewController: GridCollectionView {
     
     @IBOutlet weak var loginSection: UIView!
     @IBOutlet weak var selectButton: UIBarButtonItem!
+    @IBOutlet weak var settingsButton: UIBarButtonItem!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var downloadButton: UIButton!
     
@@ -21,19 +22,11 @@ class CloudViewController: GridCollectionView {
     
     private var photosInfo = [PhotoInfo]()
     private var isSelecting = false
-    private let progressHud: JGProgressHUD = {
-        let hud = JGProgressHUD()
-        return hud
-    }()
-    private var selectedIndexPaths = [IndexPath]() {
+    private let progressHud = JGProgressHUD()
+    
+    var selectedIndexPaths = [IndexPath]() {
         didSet {
-            let count = selectedIndexPaths.count
-            navigationItem.title = "\(count) photo(s) selected"
-            [downloadButton, deleteButton].forEach {
-                $0?.alpha = count > 0 ? 1 : 0.5
-                $0?.isEnabled = count > 0
-            }
-            
+            selectionChanged()
         }
     }
     
@@ -52,6 +45,26 @@ class CloudViewController: GridCollectionView {
         flowLayout.minimumLineSpacing = 4.0
         flowLayout.minimumInteritemSpacing = 2.0
     }
+    
+    
+    private func selectionChanged() {
+        let count = selectedIndexPaths.count
+        let hasValue = count > 0
+        
+        var title = "Photos"
+        switch count {
+        case 0: title = "Photos"
+        case 1: title = "1 photo selected"
+        default: title = "\(count) photos selected"
+        }
+        navigationItem.title = title
+        
+        [downloadButton, deleteButton].forEach {
+            $0?.alpha = hasValue ? 1 : 0.5
+            $0?.isEnabled = hasValue
+        }
+    }
+    
     
     
     private func fetchPhotos() {
@@ -87,18 +100,7 @@ class CloudViewController: GridCollectionView {
     }
     
     @IBAction func selectButtonPressed(_ sender: UIBarButtonItem) {
-        isSelecting = !isSelecting
-        tabBarController?.tabBar.isHidden = isSelecting
-        
-        if !isSelecting {
-            collectionView.indexPathsForSelectedItems?.forEach{
-                collectionView.deselectItem(at: $0, animated: false)
-            }
-        }
-        
-        downloadButton.isEnabled = isSelecting
-        deleteButton.isEnabled = isSelecting
-        selectButton.title = isSelecting ? "Done" : "Select"
+       setSelectingState()
     }
     
     
@@ -108,11 +110,26 @@ class CloudViewController: GridCollectionView {
         ApiService.shared.deletePhotos(photosIds: photosIds) { (success, deletedPhotos) in
             self.progressHud.dismiss(animated: false)
             success ? self.fetchPhotos() : self.popupMessage(title: "No Internet Connection", message: "You need to connect to the internet to continue.")
+            
+            self.setSelectingState(state: false)
+            self.deselectAllItems()
         }
     }
     
     @IBAction func downloadButtonPressed(_ sender: UIButton) {
         
+    }
+    
+    
+    private func setSelectingState(state: Bool? = nil) {
+        isSelecting = state ?? !isSelecting
+        
+        if !isSelecting {
+            deselectAllItems()
+        }
+        tabBarController?.tabBar.isHidden = isSelecting
+        settingsButton.isEnabled = !isSelecting
+        selectButton.title = isSelecting ? "Done" : "Select"
     }
     
 }
@@ -123,7 +140,7 @@ class CloudViewController: GridCollectionView {
 extension CloudViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedIndexPaths.append(indexPath)
+        isSelecting ? selectedIndexPaths.append(indexPath): goToPhotoDetail(indexPath: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -132,6 +149,16 @@ extension CloudViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         self.photosInfo.count
+    }
+    
+    private func goToPhotoDetail(indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: false)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let photoDetailController = storyboard.instantiateViewController(identifier: "PhotoDetailController") as! PhotoDetailController
+        let cell = collectionView.cellForItem(at: indexPath) as! PhotoCell
+        photoDetailController.image = cell.imageView.image
+        
+        navigationController?.pushViewController(photoDetailController, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

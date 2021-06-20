@@ -204,6 +204,7 @@
                         <outlet property="flowLayout" destination="v2U-Lr-GYC" id="Fbv-nk-btU"/>
                         <outlet property="loginSection" destination="hyq-7o-c8f" id="AN1-tb-hex"/>
                         <outlet property="selectButton" destination="KaH-Hx-Sah" id="5oR-AG-MZS"/>
+                        <outlet property="settingsButton" destination="Fim-4W-lzo" id="5l7-LR-Mbj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQ2-8z-7CF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
