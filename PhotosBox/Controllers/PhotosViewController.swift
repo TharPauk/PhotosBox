@@ -129,6 +129,10 @@ class PhotosViewController: GridCollectionView {
     
     @IBAction func uploadButtonPressed(_ sender: UIButton) {
         guard selectedIndexPaths.count > 0 else { return }
+        guard AuthService.shared.isLoggedIn else {
+            popupMessage(title: "Cannot Upload", message: "You need to login to upload photos.")
+            return
+        }
         
         let images: [Data] = selectedIndexPaths.compactMap { indexPathToPngData($0) }
         progressHud.show(in: self.view)

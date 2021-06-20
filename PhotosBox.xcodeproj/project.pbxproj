@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D90C689D267F7629008B1A00 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90C689C267F7629008B1A00 /* ViewControllerExtensions.swift */; };
 		D918273E266BB99F006281BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918273D266BB99F006281BE /* AppDelegate.swift */; };
 		D9182740266BB99F006281BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D918273F266BB99F006281BE /* SceneDelegate.swift */; };
 		D9182742266BB99F006281BE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9182741266BB99F006281BE /* HomeViewController.swift */; };
@@ -14,6 +15,8 @@
 		D9182747266BB9A0006281BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9182746266BB9A0006281BE /* Assets.xcassets */; };
 		D918274A266BB9A0006281BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9182748266BB9A0006281BE /* LaunchScreen.storyboard */; };
 		D9253183266BC93D0006E61F /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9253182266BC93D0006E61F /* PhotosViewController.swift */; };
+		D9444D80267F95AB0098AC68 /* DeletePhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9444D7F267F95AB0098AC68 /* DeletePhotosResponse.swift */; };
+		D9444D8A267F96520098AC68 /* PhotoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9444D89267F96520098AC68 /* PhotoInfo.swift */; };
 		D94D508E266FB8230056D089 /* PhotosBox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D94D508C266FB8230056D089 /* PhotosBox.xcdatamodeld */; };
 		D94D5091266FB8E60056D089 /* Photo+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94D5090266FB8E60056D089 /* Photo+Extensions.swift */; };
 		D94D5094266FB9260056D089 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94D5093266FB9260056D089 /* DataController.swift */; };
@@ -31,7 +34,7 @@
 		D9B938142674C9C9006EE067 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B938132674C9C9006EE067 /* LoginResponse.swift */; };
 		D9BB539B2675E220008F6740 /* PasscodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB539A2675E220008F6740 /* PasscodeController.swift */; };
 		D9BB53A32675F174008F6740 /* PasscodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9BB53A22675F174008F6740 /* PasscodeService.swift */; };
-		D9DA9424267B5C6500C2E073 /* FetchPostsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DA9423267B5C6500C2E073 /* FetchPostsResponse.swift */; };
+		D9DA9424267B5C6500C2E073 /* FetchPhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9DA9423267B5C6500C2E073 /* FetchPhotosResponse.swift */; };
 		D9F5B5DF2673B7CA005FE784 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F5B5DE2673B7CA005FE784 /* RoundedButton.swift */; };
 		D9F5B5E22673CB60005FE784 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F5B5E12673CB60005FE784 /* RoundedTextField.swift */; };
 		EAB0E94D832CC92CA8CDDDC4 /* Pods_PhotosBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EF0F254AB3B627B4E4734A4 /* Pods_PhotosBox.framework */; };
@@ -41,6 +44,7 @@
 		2F210ECC42757443A323E36D /* Pods-PhotosBox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotosBox.debug.xcconfig"; path = "Target Support Files/Pods-PhotosBox/Pods-PhotosBox.debug.xcconfig"; sourceTree = "<group>"; };
 		5EF0F254AB3B627B4E4734A4 /* Pods_PhotosBox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotosBox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0CC3E9834E7A9A8E6B74666 /* Pods-PhotosBox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotosBox.release.xcconfig"; path = "Target Support Files/Pods-PhotosBox/Pods-PhotosBox.release.xcconfig"; sourceTree = "<group>"; };
+		D90C689C267F7629008B1A00 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		D918273A266BB99F006281BE /* PhotosBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D918273D266BB99F006281BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D918273F266BB99F006281BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +54,8 @@
 		D9182749266BB9A0006281BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D918274B266BB9A0006281BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9253182266BC93D0006E61F /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		D9444D7F267F95AB0098AC68 /* DeletePhotosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePhotosResponse.swift; sourceTree = "<group>"; };
+		D9444D89267F96520098AC68 /* PhotoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfo.swift; sourceTree = "<group>"; };
 		D94D508D266FB8230056D089 /* PhotosBox.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PhotosBox.xcdatamodel; sourceTree = "<group>"; };
 		D94D5090266FB8E60056D089 /* Photo+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+Extensions.swift"; sourceTree = "<group>"; };
 		D94D5093266FB9260056D089 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
@@ -67,7 +73,7 @@
 		D9B938132674C9C9006EE067 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		D9BB539A2675E220008F6740 /* PasscodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeController.swift; sourceTree = "<group>"; };
 		D9BB53A22675F174008F6740 /* PasscodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeService.swift; sourceTree = "<group>"; };
-		D9DA9423267B5C6500C2E073 /* FetchPostsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPostsResponse.swift; sourceTree = "<group>"; };
+		D9DA9423267B5C6500C2E073 /* FetchPhotosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPhotosResponse.swift; sourceTree = "<group>"; };
 		D9F5B5DE2673B7CA005FE784 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		D9F5B5E12673CB60005FE784 /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				D9898619266E7AC1002578F6 /* GridCollectionView.swift */,
+				D90C689C267F7629008B1A00 /* ViewControllerExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -175,7 +182,9 @@
 				D94D508C266FB8230056D089 /* PhotosBox.xcdatamodeld */,
 				D94D5090266FB8E60056D089 /* Photo+Extensions.swift */,
 				D9B938132674C9C9006EE067 /* LoginResponse.swift */,
-				D9DA9423267B5C6500C2E073 /* FetchPostsResponse.swift */,
+				D9DA9423267B5C6500C2E073 /* FetchPhotosResponse.swift */,
+				D9444D7F267F95AB0098AC68 /* DeletePhotosResponse.swift */,
+				D9444D89267F96520098AC68 /* PhotoInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -332,15 +341,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9444D8A267F96520098AC68 /* PhotoInfo.swift in Sources */,
 				D9182742266BB99F006281BE /* HomeViewController.swift in Sources */,
 				D9898615266E78AB002578F6 /* PhotosSelectionController.swift in Sources */,
 				D918273E266BB99F006281BE /* AppDelegate.swift in Sources */,
+				D90C689D267F7629008B1A00 /* ViewControllerExtensions.swift in Sources */,
 				D967FD50267541EB006736B0 /* SettingsController.swift in Sources */,
 				D9BB539B2675E220008F6740 /* PasscodeController.swift in Sources */,
-				D9DA9424267B5C6500C2E073 /* FetchPostsResponse.swift in Sources */,
+				D9DA9424267B5C6500C2E073 /* FetchPhotosResponse.swift in Sources */,
 				D94D508E266FB8230056D089 /* PhotosBox.xcdatamodeld in Sources */,
 				D960D8F1266BCB590007B2C5 /* CloudViewController.swift in Sources */,
 				D9253183266BC93D0006E61F /* PhotosViewController.swift in Sources */,
+				D9444D80267F95AB0098AC68 /* DeletePhotosResponse.swift in Sources */,
 				D9B938142674C9C9006EE067 /* LoginResponse.swift in Sources */,
 				D967FD4A267534D7006736B0 /* AuthService.swift in Sources */,
 				D94D5091266FB8E60056D089 /* Photo+Extensions.swift in Sources */,

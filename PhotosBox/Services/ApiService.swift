@@ -14,10 +14,7 @@ class ApiService {
     enum Endpoints {
         static let baseUrl = "http://192.168.100.4:4000"
         
-        case signup
-        case login
-        case upload
-        case fetchPhotos
+        case signup, login, upload, fetchPhotos, deletePhotos
         
         var stringValue: String {
             switch self {
@@ -25,6 +22,7 @@ class ApiService {
             case .login: return "\(Endpoints.baseUrl)/users/login"
             case .upload: return "\(Endpoints.baseUrl)/posts/"
             case .fetchPhotos: return "\(Endpoints.baseUrl)/posts/"
+            case .deletePhotos: return "\(Endpoints.baseUrl)/posts/"
             }
         }
         
@@ -104,14 +102,38 @@ class ApiService {
     
         AF.request(Endpoints.fetchPhotos.url, method: .get, headers: headers).responseJSON { (resp) in
             if let err = resp.error {
-                fatalError("Error in fetching post reponse : \(err.localizedDescription)")
+                print("Error in fetching post reponse : \(err.localizedDescription)")
+                completion(false, [])
             }
             
             guard let data = resp.data else { return }
             do {
-                let result = try JSONDecoder().decode(FetchPostsResponse.self, from: data)
+                let result = try JSONDecoder().decode(FetchPhotosResponse.self, from: data)
                 completion(true, result.data)
-            } catch (let err) {
+            } catch {
+                completion(false, [])
+            }
+        }
+    }
+    
+    
+    
+    func deletePhotos(completion: @escaping (Bool, [PhotoInfo]) -> Void) {
+        guard let token = AuthService.shared.token else { return }
+        
+        let headers = HTTPHeaders(arrayLiteral: HTTPHeader(name: "Content-Type", value: "application/json"), HTTPHeader(name: "Authorization", value: token))
+    
+        AF.request(Endpoints.deletePhotos.url, method: .delete, headers: headers).responseJSON { (resp) in
+            if let err = resp.error {
+                print("Error in fetching post reponse : \(err.localizedDescription)")
+                completion(false, [])
+            }
+            
+            guard let data = resp.data else { return }
+            do {
+                let result = try JSONDecoder().decode(FetchPhotosResponse.self, from: data)
+                completion(true, result.data)
+            } catch {
                 completion(false, [])
             }
         }

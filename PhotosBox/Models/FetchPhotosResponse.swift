@@ -7,17 +7,9 @@
 
 import Foundation
 
-struct FetchPostsResponse: Codable {
+struct FetchPhotosResponse: Codable {
     let status: Int
     let data: [PhotoInfo]
     let message: String?
     let total: Int?
-}
-
-struct PhotoInfo: Codable {
-    let _id: String
-    let imageName: String
-    let createdAt: String
-    let imageUrl: String
-    let timeAgo: String
 }

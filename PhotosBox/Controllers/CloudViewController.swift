@@ -55,13 +55,21 @@ class CloudViewController: GridCollectionView {
     
     
     private func fetchPhotos() {
+        guard AuthService.shared.isLoggedIn else { return }
         progressHud.show(in: self.view, animated: false)
         
-        ApiService.shared.getPhotos { (success, photosInfo) in
-            self.progressHud.dismiss(animated: false)
-            self.photosInfo = photosInfo
-            self.collectionView.reloadData()
+        ApiService.shared.getPhotos(completion: handleGetPhotosRequest(success:photosInfo:))
+    }
+    
+    private func handleGetPhotosRequest(success: Bool, photosInfo: [PhotoInfo]) {
+        self.progressHud.dismiss(animated: false)
+        
+        guard success else {
+            popupMessage(title: "No Internet Connection", message: "You need to connect to the internet to continue.")
+            return 
         }
+        self.photosInfo = photosInfo
+        self.collectionView.reloadData()
     }
     
     fileprivate func deselectAllItems() {
@@ -119,6 +127,7 @@ extension CloudViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.identifier, for: indexPath) as! PhotoCell
         let photoInfo = photosInfo[indexPath.item]
+        cell.imageView.image = #imageLiteral(resourceName: "placeholder_image")
         cell.requestImage(urlString: photoInfo.imageUrl)
         return cell
     }
