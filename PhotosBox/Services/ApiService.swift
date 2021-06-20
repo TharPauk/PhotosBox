@@ -12,7 +12,7 @@ class ApiService {
     static let shared = ApiService()
     
     enum Endpoints {
-        static let baseUrl = "http://192.168.100.4:4000"
+        static let baseUrl = "https://photosbox.herokuapp.com"
         
         case signup, login, upload, fetchPhotos, deletePhotos
         
