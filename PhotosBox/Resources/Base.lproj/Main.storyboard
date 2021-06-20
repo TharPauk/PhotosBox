@@ -386,11 +386,11 @@
             </objects>
             <point key="canvasLocation" x="3702" y="429"/>
         </scene>
-        <!--Item-->
+        <!--Photos-->
         <scene sceneID="IJE-OJ-lI3">
             <objects>
                 <navigationController id="xgu-Kj-epI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="unselected_photo_icon" selectedImage="selected_photo_icon" id="q29-DX-2q2"/>
+                    <tabBarItem key="tabBarItem" title="Photos" image="unselected_photo_icon" selectedImage="selected_photo_icon" id="q29-DX-2q2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="ySI-NS-z5a">
                         <rect key="frame" x="0.0" y="44" width="390" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
