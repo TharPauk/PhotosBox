@@ -1,5 +1,5 @@
 # PhotosBox
- **PhotosBox** is a project for users to store their photos both locally or in cloud server. 
+ **PhotosBox** is an app for users to store their photos both locally or in cloud server. 
 
 # Features
 - Import photos from users' photo library and store  in the app
