@@ -1,5 +1,5 @@
 # PhotosBox
- **PhotosBox** is an app for users to store their photos both locally or in cloud server. 
+ **PhotosBox** is a project for users to store their photos both locally or in cloud server. 
 
 # Features
 - Import photos from users' photo library and store  in the app
@@ -63,3 +63,8 @@ To logout, go to the settings screen by tapping on the **"Settings"** button on 
 - KeychainSwift
 - JGProgressHUD
 - SDWebImage
+
+## Requirements
+-   iOS 14.3+
+-   Xcode 12.3+
+-   Swift 5+
