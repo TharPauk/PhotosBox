@@ -21,7 +21,7 @@ class PhotosViewController: GridCollectionView {
     @IBOutlet weak var uploadButton: UIButton!
     @IBOutlet weak var selectButton: UIBarButtonItem!
     @IBOutlet weak var addButton: UIBarButtonItem!
-    
+    @IBOutlet weak var heightAnchorConstraint: NSLayoutConstraint!
     
     
     // MARK: - Properties
@@ -76,6 +76,7 @@ class PhotosViewController: GridCollectionView {
   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        heightAnchorConstraint.constant = tabBarController?.tabBar.frame.height ?? 83
         navigationItem.title = "Photos"
         setSelectingState(state: false)
     }

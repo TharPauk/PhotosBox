@@ -161,7 +161,6 @@
                                 <constraints>
                                     <constraint firstItem="6P3-no-hp2" firstAttribute="leading" secondItem="nQu-ea-yhM" secondAttribute="leading" id="9FT-bk-QMx"/>
                                     <constraint firstItem="6P3-no-hp2" firstAttribute="top" secondItem="nQu-ea-yhM" secondAttribute="top" id="EpT-WB-kOs"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="83" id="N3T-H4-WvV"/>
                                     <constraint firstAttribute="trailing" secondItem="6P3-no-hp2" secondAttribute="trailing" id="UGH-qn-MPF"/>
                                     <constraint firstAttribute="bottom" secondItem="6P3-no-hp2" secondAttribute="bottom" constant="20" symbolic="YES" id="cIW-cT-4vm"/>
                                     <constraint firstAttribute="height" constant="83" id="tfy-Bv-VAg"/>
@@ -202,6 +201,7 @@
                         <outlet property="deleteButton" destination="yZa-Ll-NvY" id="XQc-Qu-fnV"/>
                         <outlet property="downloadButton" destination="6wb-np-P2F" id="dNC-ls-nMR"/>
                         <outlet property="flowLayout" destination="v2U-Lr-GYC" id="Fbv-nk-btU"/>
+                        <outlet property="heightAnchorConstraint" destination="tfy-Bv-VAg" id="P7m-Ti-ZZZ"/>
                         <outlet property="loginSection" destination="hyq-7o-c8f" id="AN1-tb-hex"/>
                         <outlet property="selectButton" destination="KaH-Hx-Sah" id="5oR-AG-MZS"/>
                         <outlet property="settingsButton" destination="Fim-4W-lzo" id="5l7-LR-Mbj"/>
@@ -512,6 +512,7 @@
                         <outlet property="collectionView" destination="dTk-0N-BLn" id="0dV-ut-cAl"/>
                         <outlet property="deleteButton" destination="Oao-5k-YhE" id="461-ze-CEU"/>
                         <outlet property="flowLayout" destination="i4t-dN-rZX" id="rSv-me-Vd0"/>
+                        <outlet property="heightAnchorConstraint" destination="X4o-UG-hUz" id="7j5-r1-ERP"/>
                         <outlet property="selectButton" destination="FlH-wO-ShT" id="rcL-LC-uZT"/>
                         <outlet property="uploadButton" destination="QnS-9z-Lk1" id="iK6-ev-YMD"/>
                     </connections>
