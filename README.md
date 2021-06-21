@@ -5,7 +5,7 @@
 - Import photos from users' photo library and store  in the app
 - Delete photos from the app
 - Upload photos to the cloud
-- Download photos from the cloud server
+- Save photos from the cloud server
 - Delete photos from the cloud server
 - Set passcode
 - Remove passcode
@@ -65,6 +65,6 @@ To logout, go to the settings screen by tapping on the **"Settings"** button on 
 - SDWebImage
 
 ## Requirements
--   iOS 14.3+
+-   iOS 14.0+
 -   Xcode 12.3+
 -   Swift 5+
