@@ -16,7 +16,7 @@ class CloudViewController: GridCollectionView {
     @IBOutlet weak var selectButton: UIBarButtonItem!
     @IBOutlet weak var settingsButton: UIBarButtonItem!
     @IBOutlet weak var deleteButton: UIButton!
-    @IBOutlet weak var downloadButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
@@ -67,8 +67,14 @@ class CloudViewController: GridCollectionView {
         ApiService.shared.deletePhotos(photosIds: photosIds, completion: handleDeletePhotos(success:photosInfo:))
     }
     
-    @IBAction func downloadButtonPressed(_ sender: UIButton) {
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
         selectedIndexPaths.forEach { saveToStore(indexPath: $0) }
+        
+        setSelectingState(state: false)
+        deselectAllItems()
+        popupMessage(title: "Saved Successfully!", message: "Selected photos are saved Successfully.")
+        tabBarController?.selectedIndex = 0
+        
     }
     
     // MARK: - Initialization Functions
@@ -131,7 +137,7 @@ class CloudViewController: GridCollectionView {
         }
         navigationItem.title = title
         
-        [downloadButton, deleteButton].forEach {
+        [saveButton, deleteButton].forEach {
             $0?.alpha = hasValue ? 1 : 0.5
             $0?.isEnabled = hasValue
         }
@@ -163,15 +169,9 @@ class CloudViewController: GridCollectionView {
         guard let cell = collectionView.cellForItem(at: indexPath) as? PhotoCell,
               let image = cell.imageView.image else { return }
         
-        progressHud.show(in: self.view)
         let photo = Photo(context: self.dataController.viewContext)
         photo.data = image.pngData()
         dataController.saveContext()
-        
-        progressHud.dismiss()
-        setSelectingState(state: false)
-        deselectAllItems()
-        tabBarController?.selectedIndex = 0
     }
    
 }

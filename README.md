@@ -30,8 +30,8 @@ To upload photos to the cloud server, press **"Select"** button on the top left 
 > ***Note:*** Users need to be logged in to do cloud related features. Users can login or sign up in the Cloud Screen. 
 
 
-#### 4. Download photos from cloud
-To download photos from the cloud server, press **"Select"** button on the top left corner of the Cloud Screen, select photos that you want to download and press **"Download"** button on the bottom of the screen.
+#### 4. Save photos from cloud
+To save photos from the cloud server, press **"Select"** button on the top left corner of the Cloud Screen, select photos that you want to save and press **"Save"** button on the bottom of the screen.
 
 #### 5. Delete photos from the app
 To delete photos from the cloud server, press **"Select"** button on the top left corner of the Cloud Screen, select photos that you want to delete and press **"Delete"** button on the bottom of the screen.
