@@ -22,6 +22,7 @@ class PhotosViewController: GridCollectionView {
     @IBOutlet weak var selectButton: UIBarButtonItem!
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var heightAnchorConstraint: NSLayoutConstraint!
+    @IBOutlet weak var toolBarView: UIView!
     
     
     // MARK: - Properties
@@ -165,7 +166,7 @@ class PhotosViewController: GridCollectionView {
     
     private func setSelectingState(state: Bool? = nil) {
         isSelecting = state ?? !isSelecting
-        
+        toolBarView.isHidden = !isSelecting
         if !isSelecting {
             deselectAllItems()
         }

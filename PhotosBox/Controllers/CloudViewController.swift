@@ -20,6 +20,7 @@ class CloudViewController: GridCollectionView {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
+    @IBOutlet weak var toolBarView: UIView!
     @IBOutlet weak var heightAnchorConstraint: NSLayoutConstraint!
     
     
@@ -46,7 +47,7 @@ class CloudViewController: GridCollectionView {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        setSelectingState(state: false)
         heightAnchorConstraint.constant = tabBarController?.tabBar.frame.height ?? 83
         fetchPhotos()
         loginSection.isHidden = AuthService.shared.isLoggedIn
@@ -152,6 +153,8 @@ class CloudViewController: GridCollectionView {
     
     private func setSelectingState(state: Bool? = nil) {
         isSelecting = state ?? !isSelecting
+        toolBarView.isHidden = !isSelecting
+        
         
         if !isSelecting {
             deselectAllItems()

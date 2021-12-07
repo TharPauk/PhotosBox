@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8m9-0B-qfr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8m9-0B-qfr">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -205,6 +206,7 @@
                         <outlet property="saveButton" destination="6wb-np-P2F" id="dNC-ls-nMR"/>
                         <outlet property="selectButton" destination="KaH-Hx-Sah" id="5oR-AG-MZS"/>
                         <outlet property="settingsButton" destination="Fim-4W-lzo" id="5l7-LR-Mbj"/>
+                        <outlet property="toolBarView" destination="nQu-ea-yhM" id="jH0-yJ-O8I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQ2-8z-7CF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -514,6 +516,7 @@
                         <outlet property="flowLayout" destination="i4t-dN-rZX" id="rSv-me-Vd0"/>
                         <outlet property="heightAnchorConstraint" destination="X4o-UG-hUz" id="7j5-r1-ERP"/>
                         <outlet property="selectButton" destination="FlH-wO-ShT" id="rcL-LC-uZT"/>
+                        <outlet property="toolBarView" destination="8l0-4l-5YN" id="94G-4h-CrW"/>
                         <outlet property="uploadButton" destination="QnS-9z-Lk1" id="iK6-ev-YMD"/>
                     </connections>
                 </viewController>
